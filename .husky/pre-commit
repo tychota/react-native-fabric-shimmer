@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# Resolve pnpm via corepack if a global `pnpm` isn't on PATH (which happens
+# when contributors rely solely on `corepack use <pm>` without a global shim).
+if command -v pnpm >/dev/null 2>&1; then
+  PNPM=pnpm
+else
+  PNPM="corepack pnpm"
+fi
+
+exec $PNPM exec lint-staged
