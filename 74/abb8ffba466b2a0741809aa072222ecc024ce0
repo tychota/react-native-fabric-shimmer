@@ -1,0 +1,25 @@
+packages/react-native-dynamic-shimmer/__tests__/unit/measure/flattenTree.test.ts
+  b4a114505f5ed661 1-84
+packages/react-native-dynamic-shimmer/src/measure/flattenTree.ts
+  b4a114505f5ed661 1-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "74abb8ffba466b2a0741809aa072222ecc024ce0",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 248,
+      "total_deletions": 17,
+      "accepted_lines": 515,
+      "overriden_lines": 0
+    }
+  }
+}
