@@ -1,0 +1,23 @@
+.gitignore
+  b4a114505f5ed661 13,40-42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "f49ecd4c014260a737c9dd26093e34cf01a1cfa3",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 170,
+      "total_deletions": 23,
+      "accepted_lines": 4,
+      "overriden_lines": 0
+    }
+  }
+}
