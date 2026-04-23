@@ -1,0 +1,23 @@
+.github/workflows/docs.yml
+  b4a114505f5ed661 1-5,8-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "a7486573b6a2b175c062b20facf6e3777645b1cc",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 57,
+      "total_deletions": 1,
+      "accepted_lines": 1071,
+      "overriden_lines": 2
+    }
+  }
+}
