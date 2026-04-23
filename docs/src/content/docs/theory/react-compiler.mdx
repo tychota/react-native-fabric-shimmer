@@ -1,0 +1,34 @@
+---
+title: React Compiler safety
+description: How the library stays compiler-clean without escape hatches.
+---
+
+React 19 ships the React Compiler as a stable optimization. The library is
+designed to work cleanly both with and without the compiler — no
+`'use no memo'` directives, no surprising behavior.
+
+## What we avoid
+
+- **No manual `React.memo` / `useMemo` / `useCallback`.** The compiler adds
+  memoization where it's safe; we don't duplicate that.
+- **No render-time ref reads.** Fiber walking and `measureLayout` run inside
+  `onLayout` handlers and `requestAnimationFrame`, not during render.
+- **No mutation of props or state during render.** Measurement results land
+  via `setState`, which the compiler handles correctly.
+
+## Reanimated interop
+
+Reanimated worklets are opaque to the React Compiler because `'worklet'` is a
+separate compilation path. The compiler leaves worklet functions alone.
+`useAnimatedStyle(() => { 'worklet' ... })` is safe under the compiler — the
+callback's dependencies are the worklet's closure, not React hook deps.
+
+## Users writing extension hooks
+
+The library's extension hooks (`classify`, `refineBones`, `renderBone`) are
+**pure functions** called during the measurement pipeline, outside React's
+render phase. The compiler doesn't see them as dependencies; users can pass
+inline functions without penalty.
+
+If a custom component passed via `renderBone` uses React hooks, those hooks
+are subject to the compiler normally — same rules as any other component.

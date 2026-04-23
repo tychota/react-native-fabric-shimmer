@@ -1,0 +1,53 @@
+---
+title: Measurement flow
+description: From onLayout to first shimmer frame, step by step.
+---
+
+The pipeline, from the moment `loading=true` is committed:
+
+```
+Frame T   : loading=true committed
+Frame T   : onLayout(container) fires
+            handleLayout schedules requestAnimationFrame
+Frame T+1 : getFiber(ref.current) → rootFiber
+            buildBoneTree(rootFiber, classify) → UnmeasuredBoneTree
+            await Promise.all(leaves.map(measureLayout)) → rects attached
+            refineBones(tree) → RefinedBoneTree
+            flattenTree(tree) → BoneRect[]
+            setState(bones)
+Frame T+2 : React commits, overlay mounts, useAnimatedStyle installs
+            first shimmer frame visible
+```
+
+End-to-end: typically **~50 ms** on a modern device, **~100 ms** under load.
+
+## What each stage does
+
+**`getFiber`** — dereferences `ref.current.__internalInstanceHandle` (the
+Fabric-provided access point to the React fiber).
+
+**`buildBoneTree`** — walks the fiber tree depth-first, calling `classify` for
+each node. Emits an intermediate representation (IR) with placeholder rects.
+
+**`measureTree`** — issues `measureLayout` in parallel for every classifiable
+node, relative to the container. Drops any node whose measurement fails.
+
+**`refineBones`** — optional user hook. Receives the IR with real rects and
+returns a transformed IR. Default is identity.
+
+**`flattenTree`** — walks the IR depth-first and emits a `BoneRect[]`,
+containers before their children (so render order paints containers
+behind content).
+
+## Re-measurement
+
+`onLayout` re-fires on orientation change, split-view resize, font-scale
+change, and any layout shift. The pipeline re-runs from scratch, producing
+fresh bones. The shimmer oscillator stays put (same `SharedValue`), so the
+visual stays smooth during re-measurements.
+
+## Race handling
+
+Concurrent layout events are debounced via a monotonic run id — only the most
+recent run's result applies. If the container unmounts mid-measurement, the
+result is discarded.

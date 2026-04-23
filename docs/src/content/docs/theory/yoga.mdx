@@ -1,0 +1,39 @@
+---
+title: Yoga layout
+description: Why measuring the rendered component captures exactly the right rectangles.
+---
+
+React Native uses Yoga for flex layout. Yoga computes positions and sizes from
+the `style` props on host views — `flexDirection`, `flex`, `padding`, `margin`,
+`width`, etc. This computation is done in native C++ after every React commit
+that changes the layout tree.
+
+By the time `onLayout` fires, Yoga has already resolved every rect. The shadow
+tree holds authoritative positions, and our library reads them via Fabric's
+`measureLayout`.
+
+## Why we render children before measuring
+
+A common question: "can we compute bone positions from the component's source
+code, without rendering it?" No — Yoga needs an actual tree to lay out. The
+container's size (which depends on ancestors, font scaling, OS-level Dynamic
+Type, locale, RTL) is only known at runtime.
+
+Rendering with mock data, measuring, then painting shimmer is the smallest
+thing that captures the full runtime layout.
+
+## Text wrapping
+
+`<Text>` uses native text measurement, which depends on font, font scale,
+locale, and the rendered container width. We can't predict where lines will
+wrap from source. The runtime measurement catches the actual line breaks —
+each rendered `<Text>` node reports its own rect, even across multiple lines
+(each line is a separate host text run on most platforms).
+
+## Constraint kinks
+
+Yoga layout is **piecewise linear** in container width: within any single
+constraint region, positions are `a*W + b`. Constraints (`minWidth`,
+`maxWidth`, `flexWrap`, intrinsic content size, `aspectRatio`) introduce kinks
+where the slope changes. Our runtime measurement doesn't need to reason about
+these — we just observe the result at the actual container width.

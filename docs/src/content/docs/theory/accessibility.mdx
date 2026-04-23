@@ -1,0 +1,49 @@
+---
+title: Accessibility
+description: Progress-bar role, hidden content, reduce motion.
+---
+
+The skeleton is accessible by default.
+
+## Progress-bar role
+
+While loading is visible, the overlay has:
+
+```ts
+accessibilityRole="progressbar"
+accessibilityState={{ busy: true }}
+accessibilityLabel="Loading"    // overridable via the accessibilityLabel prop
+```
+
+VoiceOver / TalkBack announces "Loading, busy", then moves on. Swipe
+navigation treats the overlay as one focusable region.
+
+## Children hidden from AX
+
+During loading, the children wrapper has
+`importantForAccessibility="no-hide-descendants"` and
+`accessibilityElementsHidden={true}`. Mock data is never announced. Once
+`isVisible` flips to false and the fade-out completes, these flags flip back
+and the real content becomes focusable.
+
+## Reduce Motion
+
+Reanimated's `ReduceMotion.System` enum is passed to every `withTiming` and
+`withRepeat` in the library. When the OS-level "Reduce Motion" setting is
+enabled, animations short-circuit to their target value — the shimmer gradient
+sits at its middle position, unmoving. It's still recognizable as a loading
+indicator.
+
+No JS branching needed: consumers don't have to detect the setting themselves.
+
+## Dynamic Type / font scaling
+
+The library measures at runtime. When a user increases system font size, the
+rendered children (which we measure) are already at the scaled size, and the
+bones match automatically.
+
+## High contrast
+
+Colors are flat props (`baseColor`, `highlightColor`). Consumers pick values
+that meet their contrast requirements. We don't prescribe — your design
+system's tokens apply.

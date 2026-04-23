@@ -1,0 +1,43 @@
+---
+title: Fabric & JSI measurement
+description: How measureLayout became a synchronous C++ call and why it matters.
+---
+
+On the old architecture (Paper), `measureLayout` went through the async bridge:
+
+```
+JS thread → bridge → UI thread (ObjC/Java) → UIManager → callback → bridge → JS
+```
+
+Every measurement cost a bridge round-trip — sub-millisecond but not free, and
+not composable with synchronous work. Measuring 30 leaves on Paper meant 30
+round-trips.
+
+On the **New Architecture** (Fabric), `measureLayout` is a direct JSI call
+into C++:
+
+```
+JS thread → JSI → C++ ShadowNode::getRelativeLayoutMetrics → return
+```
+
+The callback-based API is a legacy shape; the underlying call is synchronous.
+A single measurement is microseconds. Thirty measurements in parallel complete
+well under 1 ms on a modern device.
+
+## What this means for skeleton libraries
+
+The original "dynamic shimmer skeletons" pattern, born on the web, was written
+under the assumption that leaving a complex component mounted just to measure
+it is expensive. On Fabric that assumption inverts: the measurement is so
+cheap that there's no reason to pre-compute bones at build time.
+
+`react-native-dynamic-shimmer` measures every time you load. The library is
+simpler, always accurate, and never drifts from the code.
+
+## Why new arch is a hard requirement
+
+The `ReactFabricHostComponent` type on new-arch exposes `measureLayout`
+directly. On old arch, `UIManager.measureLayout(childTag, parentTag, ...)` is
+the API — different shape, different performance profile. Rather than ship
+two code paths, we require new arch and throw a clear dev error if it's
+missing.
