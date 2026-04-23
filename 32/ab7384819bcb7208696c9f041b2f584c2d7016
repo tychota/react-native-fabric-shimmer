@@ -1,0 +1,27 @@
+mise.toml
+  b4a114505f5ed661 2
+.node-version
+  b4a114505f5ed661 1
+.nvmrc
+  b4a114505f5ed661 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "32ab7384819bcb7208696c9f041b2f584c2d7016",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": null,
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 3,
+      "accepted_lines": 14,
+      "overriden_lines": 0
+    }
+  }
+}
