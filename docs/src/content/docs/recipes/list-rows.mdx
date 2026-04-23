@@ -1,0 +1,37 @@
+---
+title: List rows
+description: One Skeleton per row in a virtualized list.
+---
+
+```tsx
+import { FlashList } from "@shopify/flash-list";
+import { Skeleton } from "react-native-dynamic-shimmer";
+
+function UserList(): JSX.Element {
+  const { data: users } = useUsers();
+  const rows = users ?? new Array(20).fill(null); // 20 skeleton placeholders
+  return (
+    <FlashList
+      data={rows}
+      estimatedItemSize={120}
+      keyExtractor={(_, i) => String(i)}
+      renderItem={({ item }) => (
+        <Skeleton loading={item === null} baseColor="#e4e4e7" highlightColor="#f4f4f5">
+          <UserCard user={item ?? MOCK_USER} />
+        </Skeleton>
+      )}
+    />
+  );
+}
+```
+
+- One `<Skeleton>` **per row**, not around the whole list.
+- Pass `null` entries during loading; the row renders `MOCK_USER`, the
+  skeleton measures it.
+- When real data arrives, each row independently flips to its real content.
+
+FlashList cell recycling remounts rows. The measurement pipeline re-runs per
+mount — acceptable for typical list sizes. For very dense lists, consider
+static skeletons (outside the scope of v0.1).
+
+See the example app's `user-list.tsx` screen for the full runnable version.

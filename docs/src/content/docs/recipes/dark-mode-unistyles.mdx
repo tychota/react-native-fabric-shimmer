@@ -1,0 +1,53 @@
+---
+title: Dark mode with Unistyles
+description: Theme-aware skeleton colors.
+---
+
+```ts
+// theme/tokens.ts
+export const tokens = {
+  colors: {
+    light: { skeletonBase: "#e4e4e7", skeletonHighlight: "#f4f4f5" /* ... */ },
+    dark: { skeletonBase: "#1f1f23", skeletonHighlight: "#2a2a2f" /* ... */ },
+  },
+} as const;
+```
+
+```ts
+// theme/unistyles.ts
+import { StyleSheet } from "react-native-unistyles";
+import { tokens } from "./tokens";
+
+StyleSheet.configure({
+  themes: {
+    light: { colors: tokens.colors.light },
+    dark: { colors: tokens.colors.dark },
+  },
+  breakpoints: { xs: 0, sm: 360, md: 640, lg: 1024 },
+  settings: { initialTheme: "light", adaptiveThemes: true },
+});
+```
+
+```tsx
+// UserScreen.tsx
+import { UnistylesRuntime } from "react-native-unistyles";
+import { Skeleton } from "react-native-dynamic-shimmer";
+
+function UserScreen(): JSX.Element {
+  const theme = UnistylesRuntime.getTheme();
+  const { data: user } = useUser();
+  return (
+    <Skeleton
+      loading={!user}
+      baseColor={theme.colors.skeletonBase}
+      highlightColor={theme.colors.skeletonHighlight}
+    >
+      <UserCard user={user ?? MOCK_USER} />
+    </Skeleton>
+  );
+}
+```
+
+With `adaptiveThemes: true`, Unistyles follows the OS setting. The Skeleton's
+colors are re-evaluated on every render, so theme toggles propagate without
+remeasuring.

@@ -1,0 +1,35 @@
+---
+title: Pull-to-refresh
+description: Show the skeleton only when the user triggers a refresh.
+---
+
+```tsx
+import { RefreshControl, ScrollView } from "react-native";
+import { useQuery } from "@tanstack/react-query";
+import { Skeleton } from "react-native-dynamic-shimmer";
+
+function ProfileScreen(): JSX.Element {
+  const q = useQuery({ queryKey: ["user", "1"], queryFn: fetchUser });
+  return (
+    <ScrollView
+      refreshControl={<RefreshControl refreshing={q.isRefetching} onRefresh={() => q.refetch()} />}
+    >
+      <Skeleton
+        loading={q.isPending || q.isRefetching}
+        baseColor="#e4e4e7"
+        highlightColor="#f4f4f5"
+      >
+        <UserCard user={q.data ?? MOCK_USER} />
+      </Skeleton>
+    </ScrollView>
+  );
+}
+```
+
+- `isPending` — initial load; show skeleton.
+- `isRefetching` — pull-to-refresh; show skeleton briefly (or omit if you
+  prefer the native spinner as the only indicator).
+
+The library's default `minShowDuration` (500 ms) prevents flicker on fast
+refetches; if your refetch is faster than that, the skeleton stays visible
+briefly after data arrives for a cleaner transition.

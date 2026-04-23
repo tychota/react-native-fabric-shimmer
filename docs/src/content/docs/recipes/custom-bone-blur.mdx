@@ -1,0 +1,43 @@
+---
+title: Custom bone — BlurView for images
+description: Replace image bones with a blur effect instead of a gradient.
+---
+
+```tsx
+import { BlurView } from "expo-blur";
+import { Skeleton, Bone, type RenderBoneFn } from "react-native-dynamic-shimmer";
+
+const renderBone: RenderBoneFn = (rect, ctx) => {
+  if (rect.kind === "image") {
+    const resolvedRadius = rect.borderRadius === "50%" ? rect.width / 2 : rect.borderRadius;
+    return (
+      <BlurView
+        key={ctx.index}
+        intensity={60}
+        tint="light"
+        style={{
+          position: "absolute",
+          left: rect.x,
+          top: rect.y,
+          width: rect.width,
+          height: rect.height,
+          borderRadius: resolvedRadius,
+          overflow: "hidden",
+        }}
+      />
+    );
+  }
+  return <Bone key={ctx.index} rect={rect} ctx={ctx} />;
+};
+
+<Skeleton loading renderBone={renderBone} baseColor="#e4e4e7" highlightColor="#f4f4f5">
+  <UserCard user={user ?? MOCK_USER} />
+</Skeleton>;
+```
+
+Notes:
+
+- `BlurView` is an Expo module; bare RN can use `@react-native-community/blur`.
+- Blur is expensive — for lists with many rows, prefer the default gradient.
+- `overflow: 'hidden'` on the BlurView is required for the border radius to
+  clip the blur correctly.
