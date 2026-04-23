@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": ".",
+    "rootDir": "../..",
     "jsx": "react-jsx",
     "paths": {
       "react-native-dynamic-shimmer": ["../../packages/react-native-dynamic-shimmer/src/index.ts"]
