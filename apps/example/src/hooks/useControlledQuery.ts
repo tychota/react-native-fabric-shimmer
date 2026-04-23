@@ -8,8 +8,10 @@ export function useControlledQuery<T>(
   defaultConfig: MockConfig = {},
 ): UseQueryResult<T> {
   const params = useLocalSearchParams();
-  const delayMs = params.delay !== undefined ? Number(params.delay) : defaultConfig.delayMs;
-  const failAfterMs = params.fail !== undefined ? Number(params.fail) : defaultConfig.failAfterMs;
+  const delayRaw = params["delay"];
+  const failRaw = params["fail"];
+  const delayMs = typeof delayRaw === "string" ? Number(delayRaw) : defaultConfig.delayMs;
+  const failAfterMs = typeof failRaw === "string" ? Number(failRaw) : defaultConfig.failAfterMs;
   return useQuery<T>({
     queryKey: [...key, { delayMs, failAfterMs }],
     queryFn: () =>
