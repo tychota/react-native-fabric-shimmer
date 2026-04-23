@@ -1,0 +1,13 @@
+packages/react-native-dynamic-shimmer/tsconfig.build.json
+  b4a114505f5ed661 1-3,6-11
+packages/react-native-dynamic-shimmer/package.json
+  b4a114505f5ed661 1-54,64-73
+packages/react-native-dynamic-shimmer/tsdown.config.ts
+  b4a114505f5ed661 1-8,12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "d22e63e024e4de9fcacc7bfa44310af29e9b2265",
+  "prompts": {}
+}

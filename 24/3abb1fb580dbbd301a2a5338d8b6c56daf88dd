@@ -1,0 +1,25 @@
+packages/react-native-dynamic-shimmer/__tests__/unit/platform/fabric.test.ts
+  b4a114505f5ed661 1-17,19-20,22-24,26-32,34-41,43-44
+packages/react-native-dynamic-shimmer/src/platform/fabric.ts
+  b4a114505f5ed661 1-3,5-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "243abb1fb580dbbd301a2a5338d8b6c56daf88dd",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 237,
+      "total_deletions": 0,
+      "accepted_lines": 85,
+      "overriden_lines": 0
+    }
+  }
+}
