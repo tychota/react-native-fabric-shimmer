@@ -1,0 +1,91 @@
+---
+title: Troubleshooting
+description: Dev warnings, common gotchas, and how to resolve them.
+---
+
+## Warnings
+
+The library logs at most five distinct warnings in dev, each at most once per
+Skeleton mount.
+
+### `Fabric required. Enable the New Architecture.`
+
+You're on the old architecture (Paper). The library doesn't support it.
+
+Fix: enable new arch.
+
+- **Expo:** set `newArchEnabled: true` in `app.config.ts` and rebuild.
+- **Bare RN:** set `newArchEnabled=true` in `android/gradle.properties` and
+  run `RCT_NEW_ARCH_ENABLED=1 pod install --repo-update` in `ios/`.
+
+### `Container ref has no fiber instance. Is this inside a <Modal> or <Portal>?`
+
+The `ref.current` doesn't expose `__internalInstanceHandle`. Common causes:
+
+- The Skeleton is rendered inside a `<Modal>` or `<Portal>` whose children
+  live in a detached tree.
+- The container is optimized away by Fabric view flattening.
+
+Fix: wrap the Skeleton (or the Modal) with `<View collapsable={false}>` or
+rerender outside the portal.
+
+### `No bones found after walk. Your subtree may contain only transparent views.`
+
+The measurement completed but no leaves were classified as bone candidates.
+The subtree may be only plain `<View>` wrappers without text, images, or
+distinctive surfaces.
+
+Fix: add a leaf type (`<Text>`, `<Image>`) to the children, or provide a
+`classify` function that marks your custom component as a leaf.
+
+### `{hookName} threw: {error}. Falling back to default.`
+
+Your `classify` / `refineBones` / `renderBone` threw. The library falls back
+to the default.
+
+Fix: handle the error in your hook. Check types and nullish guards.
+
+### `Measurement pipeline exceeded {N}ms for {M} nodes.`
+
+The pipeline took longer than expected, usually because the subtree is very
+large (50+ leaves). Skeleton rendering still works, but consider narrowing
+the scope with `classify`:
+
+```tsx
+<Skeleton classify={(fiber) => fiber.type === 'DebugBorder' ? 'skip' : defaultClassify(fiber)}>
+```
+
+## Common issues
+
+### Bones don't appear even when `loading=true`
+
+Check:
+
+1. Is `loading=true` actually true? Log it.
+2. Did `onLayout` fire? Add a temporary `onMeasured` prop to verify.
+3. Is the container ref attached? (see "Container ref has no fiber instance".)
+4. Are the children rendering with valid data? A subtree with all transparent
+   `<View>` wrappers has no measurable leaves.
+
+### Shimmer looks choppy
+
+Usually a Reanimated or new-arch config issue:
+
+- Ensure `react-native-worklets/plugin` is **last** in `babel.config.js`.
+- Ensure new arch is enabled.
+- Profile with the Reanimated debugger to confirm worklets run on the UI thread.
+
+### Visual differs between iOS and Android
+
+Fabric's view flattening and measurement rounding may differ slightly. The
+library measures whatever Fabric reports; minor pixel differences are
+platform-native. If they're severe, open an issue with a repro.
+
+### React Compiler complains about my hook
+
+Ensure:
+
+- Your component doesn't mutate props or state during render.
+- You're not reading a mutable ref during render (use in effects or handlers).
+- You're not calling React hooks inside `classify` / `refineBones` /
+  `renderBone` — those are pure functions called outside render.

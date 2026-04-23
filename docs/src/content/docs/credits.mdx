@@ -1,0 +1,46 @@
+---
+title: Credits
+description: Prior art this library stands on.
+---
+
+Every design decision in this library starts from two earlier projects.
+
+## Nicușor Cîciudan — "Let's build dynamic shimmer skeletons"
+
+[neciudan.dev/lets-build-dynamic-shimmer-skeletons](https://neciudan.dev/lets-build-dynamic-shimmer-skeletons)
+
+The original blog post for the web. Establishes the central insight:
+
+> The real component IS the skeleton. Don't build a separate `<UserCardSkeleton>` —
+> render `<UserCard>` with mock data, measure it, paint shimmer over it.
+
+On the web, the pattern is implemented with `querySelectorAll` and
+`getBoundingClientRect`. This library adapts it to React Native and Fabric's
+synchronous JSI measurement, where the runtime cost is so low that the
+build-time scan phase used in the original pattern is no longer necessary.
+
+## `0xGF/boneyard`
+
+[github.com/0xGF/boneyard](https://github.com/0xGF/boneyard)
+
+An earlier React Native implementation that introduced:
+
+- The fiber-walker pattern — reaching into `__internalInstanceHandle` to walk
+  the React tree from JS without a native module.
+- The bone IR concept — a serializable list of rects.
+- The distinctive-container heuristic — views with `backgroundColor`,
+  `borderRadius`, or `borderWidth` deserve their own bone even if they have
+  children.
+
+This library keeps the fiber-walker, replaces the build-time scan + JSON
+bones with runtime measurement, and introduces a user-facing IR that
+consumers operate on through `walk` / `find` / `hide` / `merge` helpers
+instead of manipulating the React fiber tree directly.
+
+## This library
+
+`react-native-dynamic-shimmer` by Tycho Tatitscheff, MIT licensed.
+
+If you ship this library in a product, feedback and issues on the
+[GitHub repo](https://github.com/tychota/react-native-dynamic-shimmer) are
+welcome.
