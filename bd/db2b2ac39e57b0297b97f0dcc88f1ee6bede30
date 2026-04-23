@@ -1,0 +1,23 @@
+apps/example/app/classify.tsx
+  b4a114505f5ed661 1-56
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "bddb2b2ac39e57b0297b97f0dcc88f1ee6bede30",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 70,
+      "total_deletions": 14,
+      "accepted_lines": 56,
+      "overriden_lines": 0
+    }
+  }
+}

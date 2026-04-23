@@ -1,0 +1,25 @@
+packages/react-native-dynamic-shimmer/__tests__/unit/ir/union.test.ts
+  b4a114505f5ed661 10-13
+packages/react-native-dynamic-shimmer/src/ir/union.ts
+  b4a114505f5ed661 2-3,9,14,16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "7629e387d20606328d47f950f6e8e92eb012328a",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 40,
+      "total_deletions": 0,
+      "accepted_lines": 9,
+      "overriden_lines": 0
+    }
+  }
+}

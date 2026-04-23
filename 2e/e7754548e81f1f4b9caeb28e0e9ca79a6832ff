@@ -1,0 +1,25 @@
+packages/react-native-dynamic-shimmer/__tests__/unit/ir/merge.test.ts
+  b4a114505f5ed661 4-11,14-16,18-19,25,31,42
+packages/react-native-dynamic-shimmer/src/ir/merge.ts
+  b4a114505f5ed661 4,6-7,10-12,14,17-19,22-24,31,33,35-38,42,44-50,54,58,60
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "2ee7754548e81f1f4b9caeb28e0e9ca79a6832ff",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 111,
+      "total_deletions": 0,
+      "accepted_lines": 46,
+      "overriden_lines": 0
+    }
+  }
+}

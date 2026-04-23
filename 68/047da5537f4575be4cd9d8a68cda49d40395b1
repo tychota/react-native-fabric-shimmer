@@ -1,0 +1,25 @@
+packages/react-native-dynamic-shimmer/__tests__/unit/fiber/extractStyle.test.ts
+  b4a114505f5ed661 1-46
+packages/react-native-dynamic-shimmer/src/fiber/extractStyle.ts
+  b4a114505f5ed661 1-56
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "68047da5537f4575be4cd9d8a68cda49d40395b1",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 129,
+      "total_deletions": 27,
+      "accepted_lines": 102,
+      "overriden_lines": 0
+    }
+  }
+}

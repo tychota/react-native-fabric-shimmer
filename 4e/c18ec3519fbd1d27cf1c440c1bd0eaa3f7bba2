@@ -1,0 +1,27 @@
+packages/react-native-dynamic-shimmer/src/debug/dumpTree.ts
+  b4a114505f5ed661 1-32
+packages/react-native-dynamic-shimmer/src/index.ts
+  b4a114505f5ed661 3,5,7,10-22
+packages/react-native-dynamic-shimmer/__tests__/unit/debug/dumpTree.test.ts
+  b4a114505f5ed661 1-74
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "4ec18ec3519fbd1d27cf1c440c1bd0eaa3f7bba2",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 1903,
+      "total_deletions": 0,
+      "accepted_lines": 107,
+      "overriden_lines": 0
+    }
+  }
+}

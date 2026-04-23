@@ -1,0 +1,29 @@
+docs/src/content/docs/recipes/custom-bone-blur.mdx
+  b4a114505f5ed661 1-6,9-10,13-18,20-24,26-27,29,32-34,36-43
+docs/src/content/docs/recipes/dark-mode-unistyles.mdx
+  b4a114505f5ed661 1-9,12,14-17,20-26,29-32,35-36,39-46,48-53
+docs/src/content/docs/recipes/pull-to-refresh.mdx
+  b4a114505f5ed661 1-6,10-11,13-24,26-35
+docs/src/content/docs/recipes/list-rows.mdx
+  b4a114505f5ed661 1-6,9-10,13-23,25-37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "a9cf3fc282b34605c281a6f40505fed3628ff0b2",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 162,
+      "total_deletions": 0,
+      "accepted_lines": 136,
+      "overriden_lines": 0
+    }
+  }
+}
