@@ -1,0 +1,27 @@
+apps/example/app/fast-load.tsx
+  b4a114505f5ed661 1-12,15-29
+apps/example/app/slow-load.tsx
+  b4a114505f5ed661 1-12,15-26
+apps/example/app/error-state.tsx
+  b4a114505f5ed661 1-13,16-65
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "91c844484a663f9cf5ebbb354f1b940f3fc8dd1e",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 129,
+      "total_deletions": 0,
+      "accepted_lines": 114,
+      "overriden_lines": 0
+    }
+  }
+}

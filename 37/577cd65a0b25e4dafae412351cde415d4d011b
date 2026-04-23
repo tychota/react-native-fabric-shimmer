@@ -1,0 +1,23 @@
+packages/react-native-dynamic-shimmer/__tests__/setup.ts
+  b4a114505f5ed661 1-3,6-7,9,21,35,40,42,44,49,51,60,62,75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "37577cd65a0b25e4dafae412351cde415d4d011b",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 170,
+      "total_deletions": 11,
+      "accepted_lines": 12,
+      "overriden_lines": 0
+    }
+  }
+}

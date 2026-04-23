@@ -1,0 +1,23 @@
+docs/src/content/docs/api.mdx
+  b4a114505f5ed661 1-10,15-16,20-21,25-26,28-29,33-61,65-72,74-75,86-87,95-96,100-103,106,108,116-117,131-148,150-151,157
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "86cb96d71250435089008e04e92093c77ba4d29e",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 149,
+      "total_deletions": 0,
+      "accepted_lines": 90,
+      "overriden_lines": 0
+    }
+  }
+}

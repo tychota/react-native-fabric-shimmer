@@ -1,0 +1,23 @@
+apps/example/app/refine-bones-hide.tsx
+  b4a114505f5ed661 1-56
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "f0d6ee7b1f7c48b4d2f2a2fee577ea82a123b27e",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 61,
+      "total_deletions": 5,
+      "accepted_lines": 56,
+      "overriden_lines": 0
+    }
+  }
+}
