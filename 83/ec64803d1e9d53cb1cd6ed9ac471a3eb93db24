@@ -1,0 +1,29 @@
+apps/example/src/mocks/users.ts
+  b4a114505f5ed661 1,8-10,16-17,23-24,30-31,37,39,41-47
+apps/example/src/mocks/feed.ts
+  b4a114505f5ed661 1,7-9,14-15,20-21,26
+apps/example/src/hooks/useControlledQuery.ts
+  b4a114505f5ed661 4-9,13-19,21
+apps/example/src/mocks/api.ts
+  b4a114505f5ed661 3-4,8-9,11-13,15-17,21-23,26-28,31-33,36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "83ec64803d1e9d53cb1cd6ed9ac471a3eb93db24",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 92,
+      "total_deletions": 0,
+      "accepted_lines": 62,
+      "overriden_lines": 0
+    }
+  }
+}

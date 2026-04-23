@@ -1,0 +1,25 @@
+packages/react-native-dynamic-shimmer/__tests__/component/useVisibility.test.tsx
+  b4a114505f5ed661 1-39
+packages/react-native-dynamic-shimmer/src/visibility/useVisibility.ts
+  b4a114505f5ed661 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "85db77e33a3fee42371ada1a489df53df1070eb2",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 201,
+      "total_deletions": 34,
+      "accepted_lines": 47,
+      "overriden_lines": 0
+    }
+  }
+}

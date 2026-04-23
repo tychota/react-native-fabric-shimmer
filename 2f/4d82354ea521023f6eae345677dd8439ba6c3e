@@ -1,0 +1,29 @@
+packages/react-native-dynamic-shimmer/src/measure/measureTree.ts
+  b4a114505f5ed661 1-40
+packages/react-native-dynamic-shimmer/__tests__/unit/measure/buildBoneTree.test.ts
+  b4a114505f5ed661 1-7,9-15,17-23,25-31,33-39,41-44
+packages/react-native-dynamic-shimmer/__tests__/unit/measure/measureTree.test.ts
+  b4a114505f5ed661 1-10,12-78
+packages/react-native-dynamic-shimmer/src/measure/buildBoneTree.ts
+  b4a114505f5ed661 1-13,29-33,47-49,51-59,61,68-79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "2f4d82354ea521023f6eae345677dd8439ba6c3e",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 170,
+      "total_deletions": 11,
+      "accepted_lines": 155,
+      "overriden_lines": 0
+    }
+  }
+}
