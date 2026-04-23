@@ -1,0 +1,86 @@
+---
+title: Getting started
+description: Install react-native-dynamic-shimmer, wrap one component, see a shimmer.
+---
+
+## Requirements
+
+- React Native **0.76+** with the New Architecture enabled
+- React **19+**
+- `react-native-reanimated` **3.17+**
+- `expo-linear-gradient` **15+** (or `react-native-linear-gradient` **3+**)
+
+If you're starting fresh with Expo, these are the defaults in SDK 55+.
+
+## Install
+
+```sh
+pnpm add react-native-dynamic-shimmer
+# If you don't already have these:
+pnpm add react-native-reanimated expo-linear-gradient
+```
+
+npm and Yarn work equivalently.
+
+## Enable New Architecture
+
+The library throws a dev-only error on old architecture. For Expo:
+
+```ts
+// app.config.ts
+export default {
+  // ...
+  newArchEnabled: true,
+};
+```
+
+For bare React Native, set `newArchEnabled=true` in `android/gradle.properties` and run `pod install --repo-update` inside `ios/` after setting `RCT_NEW_ARCH_ENABLED=1`.
+
+## Babel setup
+
+Reanimated's worklet plugin must be last:
+
+```js
+// babel.config.js
+module.exports = {
+  presets: ["babel-preset-expo"],
+  plugins: [
+    "react-native-worklets/plugin", // ← last
+  ],
+};
+```
+
+## First component
+
+```tsx
+import { Skeleton } from "react-native-dynamic-shimmer";
+import { UserCard } from "./UserCard";
+
+const MOCK_USER = {
+  id: "0",
+  name: "Jane Doe",
+  role: "Software engineer",
+  bio: "Lorem ipsum dolor sit amet.",
+  avatarUrl: "https://example.com/placeholder.png",
+};
+
+export function ProfileScreen({ userId }: { userId: string }): JSX.Element {
+  const { data: user } = useUser(userId);
+  return (
+    <Skeleton loading={!user} baseColor="#e4e4e7" highlightColor="#f4f4f5">
+      <UserCard user={user ?? MOCK_USER} />
+    </Skeleton>
+  );
+}
+```
+
+Wrap, pass mock data for the loading case, done. The library renders your
+`<UserCard>`, measures it, and overlays shimmer rectangles over every visible
+content leaf.
+
+## What's next
+
+- [Usage patterns](/react-native-dynamic-shimmer/usage/) for stale-while-revalidate, pull-to-refresh, and error states
+- [API reference](/react-native-dynamic-shimmer/api/) for every prop and type
+- [Theory](/react-native-dynamic-shimmer/theory/fabric-jsi/) to understand how the library works under the hood
+- [Extension points](/react-native-dynamic-shimmer/extension/colors/) for custom colors, animations, and bone overrides
