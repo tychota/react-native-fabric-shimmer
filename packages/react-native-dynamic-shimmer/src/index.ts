@@ -5,6 +5,8 @@ export { defaultClassify } from "./fiber/defaultClassify";
 
 export { walk, find, findAll, hide, merge, union } from "./ir";
 
+export { dumpTree } from "./debug/dumpTree";
+
 export type {
   SkeletonProps,
   BoneProps,
