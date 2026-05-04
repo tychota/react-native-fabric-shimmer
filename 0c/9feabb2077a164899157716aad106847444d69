@@ -1,0 +1,36 @@
+superpowers/specs/2026-04-22-rn-shimmer-skeleton-design.md
+  9248b2ce31cdb3bc 40-46,54-72,238-244,397-403,419-438,463-470,602
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "0c9feabb2077a164899157716aad106847444d69",
+  "prompts": {
+    "9248b2ce31cdb3bc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6af7c3ce-8ac8-477a-8101-3474d79144e8",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 139,
+      "total_deletions": 145,
+      "accepted_lines": 139,
+      "overriden_lines": 0
+    },
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 10825,
+      "total_deletions": 3,
+      "accepted_lines": 10750,
+      "overriden_lines": 0
+    }
+  }
+}
