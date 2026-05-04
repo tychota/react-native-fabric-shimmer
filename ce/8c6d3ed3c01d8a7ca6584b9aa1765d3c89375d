@@ -1,0 +1,36 @@
+packages/react-native-dynamic-shimmer/__tests__/component/Bone.test.tsx
+  b4a114505f5ed661 1-152
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "ce8c6d3ed3c01d8a7ca6584b9aa1765d3c89375d",
+  "prompts": {
+    "9248b2ce31cdb3bc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6af7c3ce-8ac8-477a-8101-3474d79144e8",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 1251,
+      "total_deletions": 40,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 809,
+      "total_deletions": 1716,
+      "accepted_lines": 505,
+      "overriden_lines": 0
+    }
+  }
+}
