@@ -1,0 +1,31 @@
+.github/dependabot.yml
+  b4a114505f5ed661 1-13
+.github/ISSUE_TEMPLATE/bug.yml
+  b4a114505f5ed661 1-20
+.github/CODEOWNERS
+  b4a114505f5ed661 1
+.github/PULL_REQUEST_TEMPLATE.md
+  b4a114505f5ed661 1-18
+.github/ISSUE_TEMPLATE/feature.yml
+  b4a114505f5ed661 1-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "af3bfbf96511971bea2934ea5a85a59aba15436a",
+  "prompts": {
+    "b4a114505f5ed661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 946,
+      "overriden_lines": 0
+    }
+  }
+}
