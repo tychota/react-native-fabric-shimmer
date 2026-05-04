@@ -37,13 +37,13 @@ One component. One runtime measurement pass. No CLI, no JSON bones, no drift bet
 
 Pinned, not "best-effort supported":
 
-| Dependency | Minimum | Why pinned |
-| --- | --- | --- |
-| React Native | 0.76 | Fabric `ReactFabricHostComponent.measureLayout` as a JSI call; new-arch view flattening semantics |
-| React | 19 | React Compiler stable; `useDeferredValue` semantics as-documented; `__internalInstanceHandle` fiber access path |
-| react-native-reanimated | 3.17 | `ReduceMotion.System` enum; compiler compatibility; worklet plugin moved to `react-native-worklets/plugin` |
-| expo-linear-gradient | 15 (or `react-native-linear-gradient` 3) | Standard gradient for the shimmer sweep |
-| TypeScript (consumer, optional) | 5.8 | `const` type parameters, `satisfies`, `exactOptionalPropertyTypes` |
+| Dependency                      | Minimum                                  | Why pinned                                                                                                      |
+| ------------------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| React Native                    | 0.76                                     | Fabric `ReactFabricHostComponent.measureLayout` as a JSI call; new-arch view flattening semantics               |
+| React                           | 19                                       | React Compiler stable; `useDeferredValue` semantics as-documented; `__internalInstanceHandle` fiber access path |
+| react-native-reanimated         | 3.17                                     | `ReduceMotion.System` enum; compiler compatibility; worklet plugin moved to `react-native-worklets/plugin`      |
+| expo-linear-gradient            | 15 (or `react-native-linear-gradient` 3) | Standard gradient for the shimmer sweep                                                                         |
+| TypeScript (consumer, optional) | 5.8                                      | `const` type parameters, `satisfies`, `exactOptionalPropertyTypes`                                              |
 
 Old Architecture is detected at runtime — the library throws a dev-only error if it finds an old-arch host component.
 
@@ -51,25 +51,25 @@ Old Architecture is detected at runtime — the library throws a dev-only error 
 
 These choices are fixed going into implementation. Rationale is summarized where it isn't obvious.
 
-| Decision | Choice | Rationale |
-| --- | --- | --- |
-| Scan strategy | Runtime-scan only | On Fabric `measureLayout` is microseconds; build-time scan's dev/prod split is a vestige of web constraints |
-| Package name | `react-native-dynamic-shimmer` (unscoped) | Published under the `tychota` npm user; matches conventional naming for RN community libraries. The `@theodo.com` scope exists on npm but this author has no publish access, so we stay unscoped. |
-| Monorepo | pnpm workspaces, `packages/` + `apps/` + `docs/` | Expo's guidance and pnpm's resolver semantics are the most predictable |
-| Package manager | pnpm | Metro + pnpm is battle-tested; Bun has an open Metro transitive-dep bug that blocks contributors |
-| Builder | `tsdown` + `tsc --emitDeclarationOnly` | Rolldown-based, Rust-speed, no Babel → no accidental worklet transforms |
-| Linter | `oxlint` + JS-plugin for `eslint-plugin-react-hooks` | Oxlint is Rust-fast; react-compiler rules moved into `eslint-plugin-react-hooks` and are loaded via jsPlugins |
-| Formatter | `oxfmt` | Part of the Oxc ecosystem; same mental model as oxlint |
-| Tests | Vitest (unit) + RTL (component) + Storybook/Chromatic (visual web-preview) + Maestro (E2E + native screenshot) + Reassure (perf) | Full fat testing as requested |
-| Docs | Astro Starlight on GitHub Pages | Markdown-first, fast, search built in |
-| License | MIT | Standard for OSS RN libraries |
-| Release | Changesets | Monorepo-native, PR-based changelog, clean integration with pnpm |
-| TypeScript | 5.8, strict + noUncheckedIndexedAccess + exactOptionalPropertyTypes | Maximum signal |
-| Versions | Node 20 LTS, pnpm 9 pinned via `mise.toml` | Deterministic contributor environments |
-| Anti-flicker | `useDeferredValue` (device-adaptive debounce) + `useStickyBoolean` (wall-clock min duration) | React scheduler hooks don't provide wall-clock timing; composing the two gives the best of both |
-| Bone classification | 4-way: `leaf` / `container` / `transparent` / `skip` | Binary `isLeaf` can't express "emit a bone AND continue descent" for cards with distinctive visuals |
-| Tree refinement | Plain JS IR (`BoneNode`) + `walk`/`find`/`hide`/`merge`/`union` helpers | Consumers reason about the visible shape of the card, not React fibers |
-| Peer dep handling | `tsdown external:` + `"react-native"` conditional export | RN consumers hit source directly; web consumers get bundled dist |
+| Decision            | Choice                                                                                                                           | Rationale                                                                                                                                                                                         |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scan strategy       | Runtime-scan only                                                                                                                | On Fabric `measureLayout` is microseconds; build-time scan's dev/prod split is a vestige of web constraints                                                                                       |
+| Package name        | `react-native-dynamic-shimmer` (unscoped)                                                                                        | Published under the `tychota` npm user; matches conventional naming for RN community libraries. The `@theodo.com` scope exists on npm but this author has no publish access, so we stay unscoped. |
+| Monorepo            | pnpm workspaces, `packages/` + `apps/` + `docs/`                                                                                 | Expo's guidance and pnpm's resolver semantics are the most predictable                                                                                                                            |
+| Package manager     | pnpm                                                                                                                             | Metro + pnpm is battle-tested; Bun has an open Metro transitive-dep bug that blocks contributors                                                                                                  |
+| Builder             | `tsdown` + `tsc --emitDeclarationOnly`                                                                                           | Rolldown-based, Rust-speed, no Babel → no accidental worklet transforms                                                                                                                           |
+| Linter              | `oxlint` + JS-plugin for `eslint-plugin-react-hooks`                                                                             | Oxlint is Rust-fast; react-compiler rules moved into `eslint-plugin-react-hooks` and are loaded via jsPlugins                                                                                     |
+| Formatter           | `oxfmt`                                                                                                                          | Part of the Oxc ecosystem; same mental model as oxlint                                                                                                                                            |
+| Tests               | Vitest (unit) + RTL (component) + Storybook/Chromatic (visual web-preview) + Maestro (E2E + native screenshot) + Reassure (perf) | Full fat testing as requested                                                                                                                                                                     |
+| Docs                | Astro Starlight on GitHub Pages                                                                                                  | Markdown-first, fast, search built in                                                                                                                                                             |
+| License             | MIT                                                                                                                              | Standard for OSS RN libraries                                                                                                                                                                     |
+| Release             | Changesets                                                                                                                       | Monorepo-native, PR-based changelog, clean integration with pnpm                                                                                                                                  |
+| TypeScript          | 5.8, strict + noUncheckedIndexedAccess + exactOptionalPropertyTypes                                                              | Maximum signal                                                                                                                                                                                    |
+| Versions            | Node 20 LTS, pnpm 9 pinned via `mise.toml`                                                                                       | Deterministic contributor environments                                                                                                                                                            |
+| Anti-flicker        | `useDeferredValue` (device-adaptive debounce) + `useStickyBoolean` (wall-clock min duration)                                     | React scheduler hooks don't provide wall-clock timing; composing the two gives the best of both                                                                                                   |
+| Bone classification | 4-way: `leaf` / `container` / `transparent` / `skip`                                                                             | Binary `isLeaf` can't express "emit a bone AND continue descent" for cards with distinctive visuals                                                                                               |
+| Tree refinement     | Plain JS IR (`BoneNode`) + `walk`/`find`/`hide`/`merge`/`union` helpers                                                          | Consumers reason about the visible shape of the card, not React fibers                                                                                                                            |
+| Peer dep handling   | `tsdown external:` + `"react-native"` conditional export                                                                         | RN consumers hit source directly; web consumers get bundled dist                                                                                                                                  |
 
 ## 5. Architecture
 
@@ -235,13 +235,13 @@ fiber tree
   → renderBone(rect, ctx)      ← per-bone, replaces the default visual
 ```
 
-| Hook | Default | When to override |
-| --- | --- | --- |
-| `classify` | `leaf` for text/image/text-input and for childless host views with a visible surface (backgroundColor / border / divider line); `container` for host views that have children AND distinctive visuals (bg, borderRadius, borderWidth, shadow, elevation); `skip` for hidden nodes (`display: 'none'`, `opacity: 0`); `transparent` for plain layout wrappers | Custom host-like components; skip a decorative wrapper |
-| `refineBones` | identity | Merge adjacent text runs; hide decorative icons; re-shape radii |
-| `renderBone` | `<Bone>` with LinearGradient sweep | Custom visuals (BlurView, SVG, gradient ring) |
-| `baseColor`/`highlightColor` | required | Theming, dark mode, brand |
-| `animation` | `'shimmer'` | `'pulse'` for simpler aesthetic; `'none'` for static snapshots / tests |
+| Hook                         | Default                                                                                                                                                                                                                                                                                                                                                      | When to override                                                       |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| `classify`                   | `leaf` for text/image/text-input and for childless host views with a visible surface (backgroundColor / border / divider line); `container` for host views that have children AND distinctive visuals (bg, borderRadius, borderWidth, shadow, elevation); `skip` for hidden nodes (`display: 'none'`, `opacity: 0`); `transparent` for plain layout wrappers | Custom host-like components; skip a decorative wrapper                 |
+| `refineBones`                | identity                                                                                                                                                                                                                                                                                                                                                     | Merge adjacent text runs; hide decorative icons; re-shape radii        |
+| `renderBone`                 | `<Bone>` with LinearGradient sweep                                                                                                                                                                                                                                                                                                                           | Custom visuals (BlurView, SVG, gradient ring)                          |
+| `baseColor`/`highlightColor` | required                                                                                                                                                                                                                                                                                                                                                     | Theming, dark mode, brand                                              |
+| `animation`                  | `'shimmer'`                                                                                                                                                                                                                                                                                                                                                  | `'pulse'` for simpler aesthetic; `'none'` for static snapshots / tests |
 
 All hooks are **pure functions** called on the JS thread. React hooks are **not** allowed inside them. Consumers who want per-bone dynamic animations do so via a custom component in `renderBone`, where hooks are fine.
 
@@ -394,13 +394,13 @@ Two animations parallel on `isVisible → false`:
 
 The render output depends on three state bits — `loading` (external prop), `isVisible` (result of `useVisibility`), and `bones` (measured rects, initially `null`) — and resolves as follows:
 
-| `loading` | `isVisible` | `bones` | Children opacity | Overlay | User sees |
-|---|---|---|---|---|---|
-| `false` | `false` | `null` / any | `1` | not rendered | real content (the normal case) |
-| `true` | `false` | `null` | `0` (hidden) | not rendered | blank container for the debounce window |
-| `true` | `true` | `null` | `0` (hidden) | not rendered | blank container until measurement completes (~1 frame) |
-| `true` | `true` | present | `0` (hidden) | shimmer | the skeleton |
-| `false` | `true` | present | `0` (hidden) | shimmer (fading) | skeleton fading out during transition / sticky tail |
+| `loading` | `isVisible` | `bones`      | Children opacity | Overlay          | User sees                                              |
+| --------- | ----------- | ------------ | ---------------- | ---------------- | ------------------------------------------------------ |
+| `false`   | `false`     | `null` / any | `1`              | not rendered     | real content (the normal case)                         |
+| `true`    | `false`     | `null`       | `0` (hidden)     | not rendered     | blank container for the debounce window                |
+| `true`    | `true`      | `null`       | `0` (hidden)     | not rendered     | blank container until measurement completes (~1 frame) |
+| `true`    | `true`      | present      | `0` (hidden)     | shimmer          | the skeleton                                           |
+| `false`   | `true`      | present      | `0` (hidden)     | shimmer (fading) | skeleton fading out during transition / sticky tail    |
 
 Key invariants:
 
@@ -416,26 +416,26 @@ The library never crashes the consumer's app. Every failure degrades to "no skel
 
 ### 8.2 Failure modes
 
-| Scenario | Detection | Behavior |
-| --- | --- | --- |
-| Old Architecture | `stateNode` lacks `measureLayout` | Dev error with migration link; prod: render children unchanged |
-| `__internalInstanceHandle` missing | Null check after `onLayout` | Dev warning (common cause: Modal/Portal or missing `collapsable={false}`); children render normally |
-| Single `measureLayout` fails | `onFail` or NaN rect | Drop that bone; warn with `typeName(fiber)` |
-| Container unmounts mid-measurement | `containerRef.current === null` at resolve | Discard result silently |
-| Suspense boundary inside children | Walked as committed | Works — we measure whatever is actually committed. Docs recommend not wrapping Suspense you don't want shimmered |
-| Empty bone list after walk | `bones.length === 0` | Skip overlay; dev warning suggesting transparent-only subtree |
-| `classify` throws | Try/catch in walker | Fall back to default for that node; warn once |
-| `refineBones` throws | Try/catch around pipeline step | Use pre-refined tree; warn once |
-| `renderBone` throws for one bone | Error boundary around overlay | Use default `<Bone>` for that bone; other bones unaffected |
-| Corrupt tree from `refineBones` | Dev-mode schema validation | Use pre-refined tree; warn |
-| Huge trees (>50 bones) | Timing log | Dev hint: narrow scope via `classify`; no hard limit |
-| Portal/Modal children | Their `stateNode` lives elsewhere | Filtered out if rect falls outside container; info log |
-| Fast load (<16ms) | `useDeferredValue` never commits | No measurement, no render |
-| Reduce Motion on | `ReduceMotion.System` on animations | Gradient sits at middle position, still looks like loading |
-| VoiceOver active | a11y props on overlay/children | Announces "Loading"; mock data never announced |
-| Dynamic Type scaling | Measurement captures scaled rects | No extra work |
-| Nested `<Skeleton>` | Each independent | Outer measures inner as one leaf (inner's root container); inner does its own thing |
-| Inside virtualized list (FlashList/FlatList) | Cell recycling remounts | Acceptable; pipeline re-runs per mount; docs recommend one shimmer per row template with per-row instances |
+| Scenario                                     | Detection                                  | Behavior                                                                                                         |
+| -------------------------------------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Old Architecture                             | `stateNode` lacks `measureLayout`          | Dev error with migration link; prod: render children unchanged                                                   |
+| `__internalInstanceHandle` missing           | Null check after `onLayout`                | Dev warning (common cause: Modal/Portal or missing `collapsable={false}`); children render normally              |
+| Single `measureLayout` fails                 | `onFail` or NaN rect                       | Drop that bone; warn with `typeName(fiber)`                                                                      |
+| Container unmounts mid-measurement           | `containerRef.current === null` at resolve | Discard result silently                                                                                          |
+| Suspense boundary inside children            | Walked as committed                        | Works — we measure whatever is actually committed. Docs recommend not wrapping Suspense you don't want shimmered |
+| Empty bone list after walk                   | `bones.length === 0`                       | Skip overlay; dev warning suggesting transparent-only subtree                                                    |
+| `classify` throws                            | Try/catch in walker                        | Fall back to default for that node; warn once                                                                    |
+| `refineBones` throws                         | Try/catch around pipeline step             | Use pre-refined tree; warn once                                                                                  |
+| `renderBone` throws for one bone             | Error boundary around overlay              | Use default `<Bone>` for that bone; other bones unaffected                                                       |
+| Corrupt tree from `refineBones`              | Dev-mode schema validation                 | Use pre-refined tree; warn                                                                                       |
+| Huge trees (>50 bones)                       | Timing log                                 | Dev hint: narrow scope via `classify`; no hard limit                                                             |
+| Portal/Modal children                        | Their `stateNode` lives elsewhere          | Filtered out if rect falls outside container; info log                                                           |
+| Fast load (<16ms)                            | `useDeferredValue` never commits           | No measurement, no render                                                                                        |
+| Reduce Motion on                             | `ReduceMotion.System` on animations        | Gradient sits at middle position, still looks like loading                                                       |
+| VoiceOver active                             | a11y props on overlay/children             | Announces "Loading"; mock data never announced                                                                   |
+| Dynamic Type scaling                         | Measurement captures scaled rects          | No extra work                                                                                                    |
+| Nested `<Skeleton>`                          | Each independent                           | Outer measures inner as one leaf (inner's root container); inner does its own thing                              |
+| Inside virtualized list (FlashList/FlatList) | Cell recycling remounts                    | Acceptable; pipeline re-runs per mount; docs recommend one shimmer per row template with per-row instances       |
 
 ### 8.3 Warning budget
 
@@ -460,14 +460,14 @@ Each references `https://tychota.github.io/react-native-dynamic-shimmer/troubles
 
 ### 9.1 Test pyramid
 
-| Layer | Tool | Focus |
-| --- | --- | --- |
-| Unit | Vitest | Pure fns: walker, flattener, IR helpers, style math, worklets |
-| Component | RTL + mocked Fabric | Props, lifecycle, a11y, extension-hook invocation, error recovery |
-| Visual (web-preview) | Storybook + Chromatic | Shimmer shapes, colors, bone layouts on `react-native-web` |
-| Visual (native) | Maestro screenshots | Real on-device shimmer rendering |
-| E2E | Maestro | Golden paths in the example app |
-| Perf | Reassure | Initial render, toggle re-renders, fiber-walk duration |
+| Layer                | Tool                  | Focus                                                             |
+| -------------------- | --------------------- | ----------------------------------------------------------------- |
+| Unit                 | Vitest                | Pure fns: walker, flattener, IR helpers, style math, worklets     |
+| Component            | RTL + mocked Fabric   | Props, lifecycle, a11y, extension-hook invocation, error recovery |
+| Visual (web-preview) | Storybook + Chromatic | Shimmer shapes, colors, bone layouts on `react-native-web`        |
+| Visual (native)      | Maestro screenshots   | Real on-device shimmer rendering                                  |
+| E2E                  | Maestro               | Golden paths in the example app                                   |
+| Perf                 | Reassure              | Initial render, toggle re-renders, fiber-walk duration            |
 
 ### 9.2 Coverage targets
 
@@ -599,10 +599,7 @@ theodo-skeleton/
     "typescript": "^5.8.0",
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,json,md,mdx}": [
-      "oxfmt --write",
-      "oxlint --type-aware --fix",
-    ],
+    "*.{ts,tsx,js,jsx,json,md,mdx}": ["oxfmt --write", "oxlint --type-aware --fix"],
   },
 }
 ```

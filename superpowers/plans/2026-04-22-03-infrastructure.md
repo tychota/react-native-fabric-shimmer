@@ -60,6 +60,7 @@ apps/example/.maestro/
 ## Task 1: Install Storybook deps and scaffold config
 
 **Files:**
+
 - Create: `packages/react-native-dynamic-shimmer/.storybook/main.ts`
 - Create: `packages/react-native-dynamic-shimmer/.storybook/preview.tsx`
 - Create: `packages/react-native-dynamic-shimmer/.storybook/vite.config.ts`
@@ -72,13 +73,13 @@ Expected: lockfile updated.
 - [ ] **Step 2: Create `.storybook/main.ts`**
 
 ```ts
-import type { StorybookConfig } from '@storybook/react-native-web-vite'
+import type { StorybookConfig } from "@storybook/react-native-web-vite";
 
 const config: StorybookConfig = {
-  stories: ['../stories/**/*.stories.@(ts|tsx)'],
-  addons: ['@storybook/addon-essentials'],
-  framework: { name: '@storybook/react-native-web-vite', options: {} },
-  docs: { autodocs: 'tag' },
+  stories: ["../stories/**/*.stories.@(ts|tsx)"],
+  addons: ["@storybook/addon-essentials"],
+  framework: { name: "@storybook/react-native-web-vite", options: {} },
+  docs: { autodocs: "tag" },
   core: { disableTelemetry: true },
   viteFinal: (cfg) => ({
     ...cfg,
@@ -86,68 +87,68 @@ const config: StorybookConfig = {
       ...cfg.resolve,
       alias: {
         ...(cfg.resolve?.alias ?? {}),
-        'react-native': 'react-native-web',
-        'react-native-reanimated': 'react-native-reanimated/src/mock.ts',
-        'expo-linear-gradient': '../.storybook/shims/LinearGradient.tsx',
+        "react-native": "react-native-web",
+        "react-native-reanimated": "react-native-reanimated/src/mock.ts",
+        "expo-linear-gradient": "../.storybook/shims/LinearGradient.tsx",
       },
     },
   }),
-}
+};
 
-export default config
+export default config;
 ```
 
 - [ ] **Step 3: Create `.storybook/preview.tsx`**
 
 ```tsx
-import React from 'react'
-import type { Preview } from '@storybook/react'
+import React from "react";
+import type { Preview } from "@storybook/react";
 
 const preview: Preview = {
   parameters: {
     backgrounds: {
-      default: 'light',
+      default: "light",
       values: [
-        { name: 'light', value: '#ffffff' },
-        { name: 'dark',  value: '#0b0b0f' },
+        { name: "light", value: "#ffffff" },
+        { name: "dark", value: "#0b0b0f" },
       ],
     },
-    layout: 'padded',
+    layout: "padded",
   },
   decorators: [
     (Story) => (
-      <div style={{ width: 360, fontFamily: 'system-ui, sans-serif' }}>
+      <div style={{ width: 360, fontFamily: "system-ui, sans-serif" }}>
         <Story />
       </div>
     ),
   ],
-}
+};
 
-export default preview
+export default preview;
 ```
 
 - [ ] **Step 4: Create `.storybook/shims/LinearGradient.tsx` (web shim)**
 
 ```tsx
-import React from 'react'
+import React from "react";
 
 // Web-preview shim. Renders a CSS linear-gradient in place of the native component.
 export function LinearGradient(props: {
-  colors: ReadonlyArray<string>
-  start?: { x: number; y: number }
-  end?: { x: number; y: number }
-  style?: React.CSSProperties
-  children?: React.ReactNode
+  colors: ReadonlyArray<string>;
+  start?: { x: number; y: number };
+  end?: { x: number; y: number };
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
 }): React.ReactElement {
-  const stops = props.colors.join(', ')
-  const dx = (props.end?.x ?? 1) - (props.start?.x ?? 0)
-  const dy = (props.end?.y ?? 0) - (props.start?.y ?? 0)
-  const angle = Math.round((Math.atan2(dy, dx) * 180) / Math.PI + 90)
+  const stops = props.colors.join(", ");
+  const dx = (props.end?.x ?? 1) - (props.start?.x ?? 0);
+  const dy = (props.end?.y ?? 0) - (props.start?.y ?? 0);
+  const angle = Math.round((Math.atan2(dy, dx) * 180) / Math.PI + 90);
   return (
     <div style={{ ...props.style, backgroundImage: `linear-gradient(${angle}deg, ${stops})` }}>
       {props.children}
     </div>
-  )
+  );
 }
 ```
 
@@ -161,8 +162,8 @@ Edit `packages/react-native-dynamic-shimmer/package.json` — add to scripts:
     // ...existing...
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build -o storybook-static",
-    "chromatic": "chromatic --exit-zero-on-changes --only-changed"
-  }
+    "chromatic": "chromatic --exit-zero-on-changes --only-changed",
+  },
 }
 ```
 
@@ -185,6 +186,7 @@ EOF
 ## Task 2: Author Skeleton stories
 
 **Files:**
+
 - Create: `packages/react-native-dynamic-shimmer/stories/Skeleton.stories.tsx`
 - Create: `packages/react-native-dynamic-shimmer/stories/mock.ts`
 
@@ -192,53 +194,63 @@ EOF
 
 ```ts
 export const MOCK_USER = {
-  id: '1',
-  name: 'Alice Martin',
-  role: 'Product designer',
-  bio: 'Designs interfaces and the systems behind them. Loves typography.',
-  avatarUrl: 'https://i.pravatar.cc/112?img=1',
-}
+  id: "1",
+  name: "Alice Martin",
+  role: "Product designer",
+  bio: "Designs interfaces and the systems behind them. Loves typography.",
+  avatarUrl: "https://i.pravatar.cc/112?img=1",
+};
 
 export const LONG_BIO_USER = {
   ...MOCK_USER,
-  bio: Array(12).fill('Lorem ipsum dolor sit amet.').join(' '),
-}
+  bio: Array(12).fill("Lorem ipsum dolor sit amet.").join(" "),
+};
 
 export const COLORS = {
-  light: { base: '#e4e4e7', highlight: '#f4f4f5' },
-  dark:  { base: '#1f1f23', highlight: '#2a2a2f' },
-}
+  light: { base: "#e4e4e7", highlight: "#f4f4f5" },
+  dark: { base: "#1f1f23", highlight: "#2a2a2f" },
+};
 ```
 
 - [ ] **Step 2: Create `stories/Skeleton.stories.tsx`**
 
 ```tsx
-import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
-import { View, Text, Image } from 'react-native'
-import { Skeleton, Bone, find, findAll, hide, merge, type RenderBoneFn } from '../src'
-import { MOCK_USER, LONG_BIO_USER, COLORS } from './mock'
+import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import { View, Text, Image } from "react-native";
+import { Skeleton, Bone, find, findAll, hide, merge, type RenderBoneFn } from "../src";
+import { MOCK_USER, LONG_BIO_USER, COLORS } from "./mock";
 
 function UserCard({ user }: { user: typeof MOCK_USER }): React.ReactElement {
   return (
-    <View style={{ flexDirection: 'row', padding: 16, backgroundColor: '#fafafa', borderRadius: 12, borderWidth: 1, borderColor: '#eee', gap: 12 }}>
+    <View
+      style={{
+        flexDirection: "row",
+        padding: 16,
+        backgroundColor: "#fafafa",
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: "#eee",
+        gap: 12,
+      }}
+    >
       <Image source={{ uri: user.avatarUrl }} style={{ width: 56, height: 56, borderRadius: 28 }} />
       <View style={{ flex: 1, gap: 4 }}>
-        <Text style={{ fontSize: 17, fontWeight: '600' }}>{user.name}</Text>
-        <Text style={{ fontSize: 13, color: '#6a6b72' }}>{user.role}</Text>
+        <Text style={{ fontSize: 17, fontWeight: "600" }}>{user.name}</Text>
+        <Text style={{ fontSize: 13, color: "#6a6b72" }}>{user.role}</Text>
         <Text style={{ fontSize: 15 }}>{user.bio}</Text>
       </View>
     </View>
-  )
+  );
 }
 
 const meta = {
-  title: 'Skeleton',
+  title: "Skeleton",
   component: Skeleton,
   parameters: { chromatic: { pauseAnimationAtEnd: true } },
-} satisfies Meta<typeof Skeleton>
-export default meta
-type Story = StoryObj<typeof meta>
+} satisfies Meta<typeof Skeleton>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -246,32 +258,42 @@ export const Default: Story = {
       <UserCard user={MOCK_USER} />
     </Skeleton>
   ),
-}
+};
 
 export const Pulse: Story = {
   render: () => (
-    <Skeleton loading animation="pulse" baseColor={COLORS.light.base} highlightColor={COLORS.light.highlight}>
+    <Skeleton
+      loading
+      animation="pulse"
+      baseColor={COLORS.light.base}
+      highlightColor={COLORS.light.highlight}
+    >
       <UserCard user={MOCK_USER} />
     </Skeleton>
   ),
-}
+};
 
 export const NoAnimation: Story = {
   render: () => (
-    <Skeleton loading animation="none" baseColor={COLORS.light.base} highlightColor={COLORS.light.highlight}>
+    <Skeleton
+      loading
+      animation="none"
+      baseColor={COLORS.light.base}
+      highlightColor={COLORS.light.highlight}
+    >
       <UserCard user={MOCK_USER} />
     </Skeleton>
   ),
-}
+};
 
 export const DarkMode: Story = {
-  parameters: { backgrounds: { default: 'dark' } },
+  parameters: { backgrounds: { default: "dark" } },
   render: () => (
     <Skeleton loading baseColor={COLORS.dark.base} highlightColor={COLORS.dark.highlight}>
       <UserCard user={MOCK_USER} />
     </Skeleton>
   ),
-}
+};
 
 export const LongText: Story = {
   render: () => (
@@ -279,7 +301,7 @@ export const LongText: Story = {
       <UserCard user={LONG_BIO_USER} />
     </Skeleton>
   ),
-}
+};
 
 export const SmallScreen: Story = {
   render: () => (
@@ -289,34 +311,56 @@ export const SmallScreen: Story = {
       </Skeleton>
     </View>
   ),
-}
+};
 
 const customRenderBone: RenderBoneFn = (rect, ctx) =>
-  rect.kind === 'image'
-    ? <View key={ctx.index} style={{ position: 'absolute', left: rect.x, top: rect.y, width: rect.width, height: rect.height, borderRadius: rect.borderRadius === '50%' ? rect.width / 2 : rect.borderRadius, borderWidth: 2, borderColor: '#2b6cff', backgroundColor: '#fafafa' }} />
-    : <Bone key={ctx.index} rect={rect} ctx={ctx} />
+  rect.kind === "image" ? (
+    <View
+      key={ctx.index}
+      style={{
+        position: "absolute",
+        left: rect.x,
+        top: rect.y,
+        width: rect.width,
+        height: rect.height,
+        borderRadius: rect.borderRadius === "50%" ? rect.width / 2 : rect.borderRadius,
+        borderWidth: 2,
+        borderColor: "#2b6cff",
+        backgroundColor: "#fafafa",
+      }}
+    />
+  ) : (
+    <Bone key={ctx.index} rect={rect} ctx={ctx} />
+  );
 
 export const WithCustomBone: Story = {
   render: () => (
-    <Skeleton loading baseColor={COLORS.light.base} highlightColor={COLORS.light.highlight} renderBone={customRenderBone}>
+    <Skeleton
+      loading
+      baseColor={COLORS.light.base}
+      highlightColor={COLORS.light.highlight}
+      renderBone={customRenderBone}
+    >
       <UserCard user={MOCK_USER} />
     </Skeleton>
   ),
-}
+};
 
 export const MergedBones: Story = {
   render: () => (
     <Skeleton
-      loading baseColor={COLORS.light.base} highlightColor={COLORS.light.highlight}
+      loading
+      baseColor={COLORS.light.base}
+      highlightColor={COLORS.light.highlight}
       refineBones={(tree) => {
-        const texts = findAll(tree, n => n.type === 'RCTText' && n.rect.y < 60)
-        return texts.length >= 2 ? merge(tree, texts.slice(0, 2)) : tree
+        const texts = findAll(tree, (n) => n.type === "RCTText" && n.rect.y < 60);
+        return texts.length >= 2 ? merge(tree, texts.slice(0, 2)) : tree;
       }}
     >
       <UserCard user={MOCK_USER} />
     </Skeleton>
   ),
-}
+};
 
 export const Loaded: Story = {
   render: () => (
@@ -324,7 +368,7 @@ export const Loaded: Story = {
       <UserCard user={MOCK_USER} />
     </Skeleton>
   ),
-}
+};
 ```
 
 - [ ] **Step 3: Run Storybook locally**
@@ -349,6 +393,7 @@ EOF
 ## Task 3: Chromatic GitHub Action
 
 **Files:**
+
 - Create: `.github/workflows/chromatic.yml`
 
 - [ ] **Step 1: Create the workflow**
@@ -366,7 +411,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0        # Chromatic needs full history for baseline detection
+          fetch-depth: 0 # Chromatic needs full history for baseline detection
       - uses: jdx/mise-action@v2
       - run: corepack enable
       - uses: actions/cache@v4
@@ -405,6 +450,7 @@ EOF
 ## Task 4: E2E flows in the example app
 
 **Files:**
+
 - Create: `apps/example/.maestro/e2e/happy-path.yaml`
 - Create: `apps/example/.maestro/e2e/fast-load.yaml`
 - Create: `apps/example/.maestro/e2e/pull-to-refresh.yaml`
@@ -467,9 +513,9 @@ Edit `apps/example/app.config.ts` — add `ios.bundleIdentifier` and `android.pa
 ```ts
 const config: ExpoConfig = {
   // ...existing fields...
-  ios:     { bundleIdentifier: 'com.theodoskeleton.shimmerexample' },
-  android: { package: 'com.theodoskeleton.shimmerexample' },
-}
+  ios: { bundleIdentifier: "com.theodoskeleton.shimmerexample" },
+  android: { package: "com.theodoskeleton.shimmerexample" },
+};
 ```
 
 - [ ] **Step 5: Run one flow locally (requires Maestro CLI)**
@@ -496,6 +542,7 @@ EOF
 ## Task 5: Maestro native-visual flows and screenshot diff script
 
 **Files:**
+
 - Create: `apps/example/.maestro/visual/profile-card.yaml`
 - Create: `apps/example/.maestro/visual/loading-transition.yaml`
 - Create: `scripts/diff-screenshots.mjs`
@@ -539,38 +586,46 @@ appId: com.theodoskeleton.shimmerexample
 
 ```js
 #!/usr/bin/env node
-import { readdirSync, existsSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { PNG } from 'pngjs'
-import pixelmatch from 'pixelmatch'
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readdirSync, existsSync } from "node:fs";
+import { resolve } from "node:path";
+import { PNG } from "pngjs";
+import pixelmatch from "pixelmatch";
+import { readFileSync, writeFileSync } from "node:fs";
 
-const baselineDir = resolve('apps/example/.maestro/screenshots/baseline')
-const currentDir  = resolve('apps/example/.maestro/screenshots')
-const diffDir     = resolve('apps/example/.maestro/screenshots/diff')
+const baselineDir = resolve("apps/example/.maestro/screenshots/baseline");
+const currentDir = resolve("apps/example/.maestro/screenshots");
+const diffDir = resolve("apps/example/.maestro/screenshots/diff");
 
 if (!existsSync(baselineDir)) {
-  console.log('No baseline yet — treat current screenshots as new baseline.')
-  process.exit(0)
+  console.log("No baseline yet — treat current screenshots as new baseline.");
+  process.exit(0);
 }
 
-let failed = 0
+let failed = 0;
 for (const file of readdirSync(baselineDir)) {
-  if (!file.endsWith('.png')) continue
-  const a = PNG.sync.read(readFileSync(resolve(baselineDir, file)))
-  const bPath = resolve(currentDir, file)
-  if (!existsSync(bPath)) { console.warn(`Missing current screenshot: ${file}`); failed++; continue }
-  const b = PNG.sync.read(readFileSync(bPath))
-  if (a.width !== b.width || a.height !== b.height) { console.warn(`Size mismatch for ${file}`); failed++; continue }
-  const diff = new PNG({ width: a.width, height: a.height })
-  const mismatches = pixelmatch(a.data, b.data, diff.data, a.width, a.height, { threshold: 0.1 })
-  if (mismatches > (a.width * a.height * 0.005)) {
-    writeFileSync(resolve(diffDir, file), PNG.sync.write(diff))
-    console.warn(`Visual diff: ${file} (${mismatches} px)`)
-    failed++
+  if (!file.endsWith(".png")) continue;
+  const a = PNG.sync.read(readFileSync(resolve(baselineDir, file)));
+  const bPath = resolve(currentDir, file);
+  if (!existsSync(bPath)) {
+    console.warn(`Missing current screenshot: ${file}`);
+    failed++;
+    continue;
+  }
+  const b = PNG.sync.read(readFileSync(bPath));
+  if (a.width !== b.width || a.height !== b.height) {
+    console.warn(`Size mismatch for ${file}`);
+    failed++;
+    continue;
+  }
+  const diff = new PNG({ width: a.width, height: a.height });
+  const mismatches = pixelmatch(a.data, b.data, diff.data, a.width, a.height, { threshold: 0.1 });
+  if (mismatches > a.width * a.height * 0.005) {
+    writeFileSync(resolve(diffDir, file), PNG.sync.write(diff));
+    console.warn(`Visual diff: ${file} (${mismatches} px)`);
+    failed++;
   }
 }
-process.exit(failed === 0 ? 0 : 1)
+process.exit(failed === 0 ? 0 : 1);
 ```
 
 - [ ] **Step 4: Install `pngjs` and `pixelmatch`**
@@ -597,6 +652,7 @@ EOF
 ## Task 6: Reassure baseline and CI action
 
 **Files:**
+
 - Create: `packages/react-native-dynamic-shimmer/__perf__/Skeleton.perf.tsx`
 - Create: `packages/react-native-dynamic-shimmer/__perf__/baseline.json` (empty placeholder; generated by first run)
 
@@ -613,42 +669,46 @@ Edit `packages/react-native-dynamic-shimmer/package.json` — scripts:
 {
   "scripts": {
     // ...
-    "test:perf": "reassure"
-  }
+    "test:perf": "reassure",
+  },
 }
 ```
 
 - [ ] **Step 3: Create the perf test — `__perf__/Skeleton.perf.tsx`**
 
 ```tsx
-import React from 'react'
-import { View, Text } from 'react-native'
-import { measurePerformance } from '@callstack/reassure'
-import { Skeleton } from '../src/Skeleton'
+import React from "react";
+import { View, Text } from "react-native";
+import { measurePerformance } from "@callstack/reassure";
+import { Skeleton } from "../src/Skeleton";
 
 function Card({ n }: { n: number }): React.ReactElement {
   return (
     <View>
-      {Array(n).fill(null).map((_, i) => <Text key={i}>Text line {i}</Text>)}
+      {Array(n)
+        .fill(null)
+        .map((_, i) => (
+          <Text key={i}>Text line {i}</Text>
+        ))}
     </View>
-  )
+  );
 }
 
-test('Skeleton — 10 bones initial render', async () => {
+test("Skeleton — 10 bones initial render", async () => {
   await measurePerformance(
     <Skeleton loading baseColor="#eee" highlightColor="#fff">
       <Card n={10} />
     </Skeleton>,
-  )
-})
+  );
+});
 
-test('Skeleton — 30 bones initial render', async () => {
+test("Skeleton — 30 bones initial render", async () => {
   await measurePerformance(
     <Skeleton loading baseColor="#eee" highlightColor="#fff">
       <Card n={30} />
     </Skeleton>,
-  )
-})
+  );
+});
 ```
 
 - [ ] **Step 4: Run Reassure once to produce a baseline**
@@ -677,6 +737,7 @@ EOF
 ## Task 7: Bundle size budget via size-limit
 
 **Files:**
+
 - Create: `packages/react-native-dynamic-shimmer/.size-limit.json`
 
 - [ ] **Step 1: Install size-limit**
@@ -713,8 +774,8 @@ Edit `packages/react-native-dynamic-shimmer/package.json` — scripts:
 {
   "scripts": {
     // ...
-    "size": "size-limit"
-  }
+    "size": "size-limit",
+  },
 }
 ```
 
@@ -744,6 +805,7 @@ EOF
 ## Task 8: Primary CI workflow
 
 **Files:**
+
 - Create: `.github/workflows/ci.yml`
 
 - [ ] **Step 1: Create the workflow**
@@ -810,6 +872,7 @@ EOF
 ## Task 9: Example app build + Maestro Cloud workflow
 
 **Files:**
+
 - Create: `.github/workflows/example.yml`
 
 - [ ] **Step 1: Create the workflow**
@@ -819,11 +882,11 @@ name: Example app
 on:
   pull_request:
     paths:
-      - 'packages/react-native-dynamic-shimmer/**'
-      - 'apps/example/**'
-      - '.github/workflows/example.yml'
+      - "packages/react-native-dynamic-shimmer/**"
+      - "apps/example/**"
+      - ".github/workflows/example.yml"
   schedule:
-    - cron: '0 6 * * 1'
+    - cron: "0 6 * * 1"
   workflow_dispatch:
 
 jobs:
@@ -833,7 +896,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
       - uses: actions/setup-java@v4
-        with: { distribution: 'temurin', java-version: '17' }
+        with: { distribution: "temurin", java-version: "17" }
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - run: pnpm -F react-native-dynamic-shimmer build
@@ -888,6 +951,7 @@ EOF
 ## Task 10: Release workflow (changesets + npm publish with provenance)
 
 **Files:**
+
 - Create: `.github/workflows/release.yml`
 
 - [ ] **Step 1: Create the workflow**
@@ -950,6 +1014,7 @@ EOF
 ## Task 11: Dependabot, issue templates, CODEOWNERS, PR template
 
 **Files:**
+
 - Create: `.github/dependabot.yml`
 - Create: `.github/CODEOWNERS`
 - Create: `.github/PULL_REQUEST_TEMPLATE.md`
@@ -1076,6 +1141,7 @@ Expected: repo exists at `https://github.com/tychota/react-native-dynamic-shimme
 - [ ] **Step 2: Set branch protection on `main`**
 
 Run:
+
 ```bash
 gh api -X PUT repos/tychota/react-native-dynamic-shimmer/branches/main/protection \
   -f required_pull_request_reviews.required_approving_review_count=1 \
@@ -1090,6 +1156,7 @@ gh api -X PUT repos/tychota/react-native-dynamic-shimmer/branches/main/protectio
   -f allow_deletions=false \
   -f required_linear_history=true
 ```
+
 Expected: branch protection configured.
 
 - [ ] **Step 3: Verify Chromatic and Maestro secrets are set**

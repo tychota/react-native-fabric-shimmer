@@ -23,7 +23,7 @@ pnpm --filter react-native-dynamic-shimmer test
 
 ## Specs and plans
 
-See `docs/superpowers/specs/` and `docs/superpowers/plans/` for the design doc
+See `superpowers/specs/` and `superpowers/plans/` for the design doc
 and implementation plans.
 
 ## License
