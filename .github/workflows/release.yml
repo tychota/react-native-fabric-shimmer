@@ -1,0 +1,61 @@
+name: Release
+
+# When a commit lands on main:
+#   1. If there are unreleased changesets, open or update a "Version Packages"
+#      PR that runs `changeset version` (bumps package.json + CHANGELOG).
+#   2. If main itself contains the version bump (Version Packages PR merged),
+#      run `changeset publish` which calls `pnpm publish` for each package
+#      due to release.
+#
+# npm authentication is **keyless** via OIDC trusted publishing.
+# Prerequisites (one-time, on npmjs.com side):
+#   - The package has a trusted publisher configured pointing at
+#     tychota/react-native-dynamic-shimmer + .github/workflows/release.yml
+#   - Either pre-claimed via `npm trust github <pkg> --repo ... --file ...`
+#     before the first publish, or claimed via the package's Settings page
+#     after a manual first publish.
+# Until that's done, this workflow's publish step will fail loudly with an
+# OIDC-related error — the version PR mechanics still work either way.
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # changesets commits version bumps + tags
+      pull-requests: write # changesets opens the version PR
+      id-token: write # OIDC token for npm trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: jdx/mise-action@v2
+      - run: corepack enable
+      - uses: actions/cache@v4
+        with:
+          path: ~/.local/share/pnpm/store
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter react-native-dynamic-shimmer build
+      # Configure npm registry so `pnpm publish` can negotiate the OIDC
+      # token exchange. No auth token in .npmrc — its absence is what
+      # signals "use OIDC" to the npm CLI.
+      - name: Configure npm registry
+        run: echo "registry=https://registry.npmjs.org/" > .npmrc
+      - uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          version: pnpm changeset version
+          commit: "chore(release): version packages"
+          title: "chore(release): version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Emits a SLSA provenance attestation alongside the tarball.
+          # Free with OIDC and surfaced as a verified badge on npmjs.com.
+          NPM_CONFIG_PROVENANCE: "true"
