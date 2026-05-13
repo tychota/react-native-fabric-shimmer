@@ -1,0 +1,41 @@
+packages/react-native-dynamic-shimmer/stories/Skeleton.stories.tsx
+  s_b4a114505f5ed6::t_6bb52c08a83c9c 20,150
+  s_b4a114505f5ed6::t_59d57e57b28a0f 1-19,21-149,151-154
+package.json
+  s_b4a114505f5ed6::t_685adbb7a2f2e0 21-22,29-30
+packages/react-native-dynamic-shimmer/.storybook/shims/reanimated.tsx
+  s_b4a114505f5ed6::t_98b60d6f978f79 1-59,62-66,70-99
+  s_b4a114505f5ed6::t_ab9618bcd98951 67-69
+packages/react-native-dynamic-shimmer/.storybook/shims/LinearGradient.tsx
+  s_b4a114505f5ed6::t_752c6d53dfe538 1-22
+packages/react-native-dynamic-shimmer/.storybook/preview.tsx
+  s_b4a114505f5ed6::t_36e6dace4ef6d4 1-24
+packages/react-native-dynamic-shimmer/package.json
+  s_b4a114505f5ed6::t_78fdb318165124 61,65,74,77,80
+  s_b4a114505f5ed6::t_3ae69c1c288640 54-57
+.github/workflows/chromatic.yml
+  s_b4a114505f5ed6::t_5c3437f6143b5a 1-26
+packages/react-native-dynamic-shimmer/stories/mock.ts
+  s_b4a114505f5ed6::t_fff9693e58957d 1-17
+packages/react-native-dynamic-shimmer/.storybook/main.ts
+  s_b4a114505f5ed6::t_6bb52c08a83c9c 4
+  s_b4a114505f5ed6::t_f02e67bcbe74bf 2-3,6-10,23-28,31-36
+  s_b4a114505f5ed6::t_292eb68b14acd7 1,5,11-16,29-30
+  s_b4a114505f5ed6::t_092944d36edb12 17-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "4c2da0f6449ed254f4d6a10f7c38a0a7c6463a0e",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
