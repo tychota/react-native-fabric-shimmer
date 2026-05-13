@@ -1,0 +1,19 @@
+.github/workflows/release.yml
+  s_b4a114505f5ed6::t_d5456c72cc3299 1-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "54ae0628e72be3d351d87126065fae03d7cff5f2",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
