@@ -1,0 +1,112 @@
+docs/src/content/docs/extension/render-bone.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 20
+packages/react-native-fabric-shimmer/package.json
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 1-89
+apps/example/app/classify.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3
+docs/src/content/docs/recipes/custom-bone-blur.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 8
+apps/example/app/refine-bones-merge.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3
+.prettierignore
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3
+apps/example/app/breakpoints.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3
+apps/example/app/long-text.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 2
+.changeset/config.json
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3
+  s_b4a114505f5ed6::t_06222035966443 10
+apps/example/app/error-state.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3
+apps/example/app/fast-load.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 2
+docs/src/content/docs/recipes/dark-mode-unistyles.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 34
+docs/package.json
+  s_b4a114505f5ed6::t_06222035966443 2
+.github/workflows/example.yml
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 11,36,57
+  s_b4a114505f5ed6::t_06222035966443 37-38,58,60,64
+package.json
+  s_b4a114505f5ed6::t_06222035966443 2
+apps/example/tsconfig.json
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 7
+apps/example/app/profile-card.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 2
+docs/astro.config.mjs
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 6,9,13,15
+docs/src/content/docs/credits.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 42,45
+apps/example/app/custom-bone.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3
+apps/example/app/slow-load.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 2
+docs/src/content/docs/getting-started.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3,18,56,83-86
+docs/src/content/docs/theory/fabric-jsi.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 34
+packages/react-native-fabric-shimmer/tsconfig.json
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 1-12
+.github/workflows/ci.yml
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 26-28,44-47,54-56
+.github/ISSUE_TEMPLATE/bug.yml
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 11
+docs/src/content/docs/index.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 2,10,14,34,43
+docs/src/content/docs/extension/classify.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 34
+apps/example/app/refine-bones-hide.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3
+docs/src/content/docs/recipes/list-rows.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 8
+.github/workflows/docs.yml
+  s_b4a114505f5ed6::t_06222035966443 29
+packages/react-native-fabric-shimmer/README.md
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 1-31
+docs/src/content/docs/extension/animation.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 22
+apps/example/package.json
+  s_b4a114505f5ed6::t_06222035966443 2
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 31
+.github/workflows/release.yml
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 13,45
+docs/src/content/docs/extension/refine-bones.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 31
+docs/src/content/docs/usage.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 75
+apps/example/app/user-list.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 4
+README.md
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 1,7-8,20-21
+.github/workflows/chromatic.yml
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 23-24
+docs/src/content/docs/api.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 50-52,149
+docs/src/content/docs/recipes/pull-to-refresh.mdx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 9
+apps/example/app/index.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 87
+apps/example/app.config.ts
+  s_b4a114505f5ed6::t_06222035966443 4-5
+apps/example/app/dark-mode.tsx
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 3
+.changeset/initial-release.md
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "5a71a2e912e9b6417702f4330240a54df4336f72",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
