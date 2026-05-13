@@ -26,3 +26,32 @@ jobs:
       - run: pnpm --filter react-native-dynamic-shimmer test
       - run: pnpm --filter react-native-dynamic-shimmer build
       - run: pnpm --filter react-native-dynamic-shimmer size
+
+  perf:
+    runs-on: ubuntu-latest
+    needs: gate
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: jdx/mise-action@v2
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      # Stage the committed baseline where Reassure expects to find it.
+      # The committed baseline is updated by maintainers on main when an
+      # intentional perf change is merged.
+      - name: Stage perf baseline
+        run: |
+          mkdir -p packages/react-native-dynamic-shimmer/.reassure
+          cp packages/react-native-dynamic-shimmer/__perf__/baseline.json \
+             packages/react-native-dynamic-shimmer/.reassure/baseline.perf
+      - run: pnpm --filter react-native-dynamic-shimmer test:perf
+      - name: Upload perf comparison report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reassure-output
+          path: |
+            packages/react-native-dynamic-shimmer/.reassure/output.md
+            packages/react-native-dynamic-shimmer/.reassure/output.json
+            packages/react-native-dynamic-shimmer/.reassure/current.perf
+          if-no-files-found: ignore
