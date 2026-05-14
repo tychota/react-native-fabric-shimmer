@@ -1,0 +1,20 @@
+.changeset/v0-2-0-expo-sdk-alignment.md
+  s_b4a114505f5ed6::t_3a6acf0e2a9e62 1-9
+  s_b4a114505f5ed6::t_15db58b822648b 10-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "af8a1d4414a4d549bf1033ffee03250a2d2e828a",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}

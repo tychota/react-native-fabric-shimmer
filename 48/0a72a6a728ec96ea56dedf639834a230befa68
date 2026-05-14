@@ -1,0 +1,32 @@
+packages/react-native-fabric-shimmer/package.json
+  s_b4a114505f5ed6::t_bbe1f8710fd6d8 66
+apps/example/package.json
+  s_b4a114505f5ed6::t_8f4c235bc9070c 18-20,22-23,25-28,30-31,33,35-36
+  s_b4a114505f5ed6::t_a37ea2a8d87011 24
+  s_b4a114505f5ed6::t_edca704844c60c 29
+  s_b4a114505f5ed6::t_3f66f6987b5803 37
+apps/example/app.config.ts
+  s_b4a114505f5ed6::t_e43da0e3ae593c 14
+package.json
+  s_b4a114505f5ed6::t_92de5e4833592f 23,26-28
+  s_b4a114505f5ed6::t_c8f0489c7032df 45
+pnpm-workspace.yaml
+  s_b4a114505f5ed6::t_0242b11d99f944 16-33,35-36
+  s_b4a114505f5ed6::t_be97f127fb3672 34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "480a72a6a728ec96ea56dedf639834a230befa68",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}

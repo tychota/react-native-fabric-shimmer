@@ -1,0 +1,20 @@
+.github/dependabot.yml
+  s_b4a114505f5ed6::t_24d712b1144bfb 7-26
+  s_b4a114505f5ed6::t_15858cd67ead32 28-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "1a7e49cbc41b200c66c9d5fd3e5e19f594f6902b",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
