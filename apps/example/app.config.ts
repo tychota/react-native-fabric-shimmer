@@ -11,6 +11,7 @@ const config: ExpoConfig = {
   android: { package: "com.theodoskeleton.shimmerexample" },
   plugins: [
     "expo-router",
+    "expo-image",
     [
       "expo-build-properties",
       {
