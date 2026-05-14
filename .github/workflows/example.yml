@@ -35,7 +35,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm -F react-native-fabric-shimmer build
       - run: pnpm -F rn-fabric-shimmer-example prebuild:android
-      - run: pnpm -F rn-fabric-shimmer-example android:release
+      # Build the release APK headlessly; the `android:release` script
+      # uses `expo run:android` which expects a connected device/emulator
+      # and fails in CI. `android:build` invokes gradlew assembleRelease
+      # directly so the artifact is produced without any device.
+      - run: pnpm -F rn-fabric-shimmer-example android:build
       - uses: mobile-dev-inc/action-maestro-cloud@v3
         with:
           api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
@@ -57,7 +61,11 @@ jobs:
       - run: pnpm -F react-native-fabric-shimmer build
       - run: pnpm -F rn-fabric-shimmer-example prebuild:ios
       - run: cd apps/example/ios && pod install
-      - run: pnpm -F rn-fabric-shimmer-example ios:release
+      # `ios:release` uses `expo run:ios` which expects a connected
+      # simulator and fails in CI. `ios:build` calls xcodebuild
+      # directly with CODE_SIGNING_ALLOWED=NO so the simulator .app
+      # bundle is produced without device interaction.
+      - run: pnpm -F rn-fabric-shimmer-example ios:build
       - uses: mobile-dev-inc/action-maestro-cloud@v3
         with:
           api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
