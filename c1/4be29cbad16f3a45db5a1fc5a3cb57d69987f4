@@ -1,0 +1,26 @@
+.changeset/v0-2-1-readme-and-prefix.md
+  s_b4a114505f5ed6::t_9d74c1a5c66c98 1-10
+packages/react-native-fabric-shimmer/README.md
+  s_b4a114505f5ed6::t_4bbbcdd59f67d8 3,6,8-10,12,18-19,22,32-72
+  s_b4a114505f5ed6::t_2fe5c3dd730ab9 73
+packages/react-native-fabric-shimmer/src/measure/buildBoneTree.ts
+  s_b4a114505f5ed6::t_13ac1683ae11df 95
+packages/react-native-fabric-shimmer/src/measure/useMeasureBones.ts
+  s_b4a114505f5ed6::t_13ac1683ae11df 25,31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "c14be29cbad16f3a45db5a1fc5a3cb57d69987f4",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
