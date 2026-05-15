@@ -1,0 +1,30 @@
+apps/example/app/index.tsx
+  s_b4a114505f5ed6::t_666961bf344f46 81-86
+apps/example/src/mocks/projects.ts
+  s_b4a114505f5ed6::t_48cb27551776cc 1-86
+apps/example/src/components/ProjectCard.tsx
+  s_b4a114505f5ed6::t_3a6638db5124a3 1-5,7-38,40-116
+  s_b4a114505f5ed6::t_3a774dfc5b372f 6
+  s_b4a114505f5ed6::t_826f26227694d5 39
+apps/example/app/profile-stress.tsx
+  s_b4a114505f5ed6::t_66ea98652215dd 1-65,67-68,70-119
+  s_b4a114505f5ed6::t_ed6670c36303b9 66,69
+apps/example/src/components/ActivitySparkline.tsx
+  s_b4a114505f5ed6::t_61b54e5abab8f8 1-82
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "e233202dc7622ff881e0af20fc6e1d08dc2bac04",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
