@@ -1,0 +1,40 @@
+packages/react-native-fabric-shimmer/src/types.ts
+  s_8a654df4bde4f9::t_5598aa1ebc7927 105,122
+apps/example/app/error-state.tsx
+  s_8a654df4bde4f9::t_b3705b0f3dfa44 24
+packages/react-native-fabric-shimmer/__tests__/component/useMeasureBones.test.tsx
+  s_8a654df4bde4f9::t_599ae675c304ae 2,5-48,70-74,107-109,117-157
+  s_8a654df4bde4f9::t_7d04c48dc83180 110
+  s_8a654df4bde4f9::t_8fdaa2bc0b1735 111-116
+packages/react-native-fabric-shimmer/__perf__/setup.ts
+  s_8a654df4bde4f9::t_37e9f9fb2ea825 63-64,70-82
+  s_8a654df4bde4f9::t_8fdaa2bc0b1735 65-69
+packages/react-native-fabric-shimmer/__tests__/unit/fiber/defaultClassify.test.ts
+  s_8a654df4bde4f9::t_5b4991cd469c2c 67,81
+packages/react-native-fabric-shimmer/stories/Skeleton.stories.tsx
+  s_8a654df4bde4f9::t_8fdaa2bc0b1735 133-137
+  s_8a654df4bde4f9::t_60fe317ddb41d7 4-5,31-114,116,118-126,143-144,148,154-155,159,166-171,177-181,187-191,224-225,229,233,235-239,242,246,253-264
+packages/react-native-fabric-shimmer/src/measure/useMeasureBones.ts
+  s_8a654df4bde4f9::t_034f81c0f4bb33 4,15,172
+packages/react-native-fabric-shimmer/src/index.ts
+  s_8a654df4bde4f9::t_6d80ab3a9979e5 22
+packages/react-native-fabric-shimmer/__mocks__/react-native.ts
+  s_8a654df4bde4f9::t_c839914b121f3b 5-6,25-27,40-59,102-104
+  s_8a654df4bde4f9::t_bca6bd2f51734f 28-39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "3e9408ea95e4e84fcfda7fc22affc4012f7b920d",
+  "prompts": {},
+  "sessions": {
+    "s_8a654df4bde4f9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e2bdc-716d-72c1-9a5e-53a8ecb871aa",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
