@@ -1,5 +1,5 @@
 ---
-"react-native-fabric-shimmer": minor
+"react-native-fabric-shimmer": major
 ---
 
 Two changes shipping together: a small but breaking API refactor on `<Bone>` for React Compiler memoization, plus a refresh of the default bone visuals.
