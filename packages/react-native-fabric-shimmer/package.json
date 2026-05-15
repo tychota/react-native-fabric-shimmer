@@ -33,18 +33,14 @@
   "exports": {
     ".": {
       "react-native": "./src/index.ts",
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "scripts": {
     "build": "tsdown && tsc -p tsconfig.build.json",
+    "package:check": "node ../../scripts/check-package.mjs .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:unit": "vitest run __tests__/unit",
@@ -54,7 +50,7 @@
     "size": "size-limit",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build -o storybook-static",
-    "chromatic": "chromatic --exit-zero-on-changes --only-changed"
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^12.1.0",

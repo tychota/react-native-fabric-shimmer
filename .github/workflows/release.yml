@@ -43,6 +43,7 @@ jobs:
           key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter react-native-fabric-shimmer build
+      - run: pnpm --filter react-native-fabric-shimmer package:check
       # Configure npm registry so `pnpm publish` can negotiate the OIDC
       # token exchange. No auth token in .npmrc — its absence is what
       # signals "use OIDC" to the npm CLI.

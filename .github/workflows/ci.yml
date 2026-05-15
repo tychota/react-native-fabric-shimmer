@@ -25,6 +25,7 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm --filter react-native-fabric-shimmer test
       - run: pnpm --filter react-native-fabric-shimmer build
+      - run: pnpm --filter react-native-fabric-shimmer package:check
       - run: pnpm --filter react-native-fabric-shimmer size
 
   perf:

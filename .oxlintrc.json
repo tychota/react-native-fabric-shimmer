@@ -10,8 +10,13 @@
     "nursery": "off"
   },
   "rules": {
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "react/jsx-key": "error"
+    "import/no-unassigned-import": "off",
+    "no-console": ["warn", { "allow": ["log", "warn", "error"] }],
+    "no-underscore-dangle": ["warn", { "allow": ["__DEV__", "__internalInstanceHandle"] }],
+    "react/jsx-key": "error",
+    "typescript/consistent-return": "off",
+    "typescript/no-unnecessary-type-parameters": "off",
+    "typescript/no-unsafe-type-assertion": "off"
   },
   "overrides": [
     {

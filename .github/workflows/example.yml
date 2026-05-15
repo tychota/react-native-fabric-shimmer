@@ -45,10 +45,10 @@ jobs:
           api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
           app-file: apps/example/android/app/build/outputs/apk/release/app-release.apk
           workspace: apps/example/.maestro
-          include-tags: e2e
+          include-tags: e2e,visual
 
   ios:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v6
       - uses: jdx/mise-action@v4
@@ -71,4 +71,4 @@ jobs:
           api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
           app-file: apps/example/ios/build/Build/Products/Release-iphonesimulator/rn-fabric-shimmer-example.app
           workspace: apps/example/.maestro
-          include-tags: e2e
+          include-tags: e2e,visual
