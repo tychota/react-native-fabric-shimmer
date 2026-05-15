@@ -1,0 +1,21 @@
+pnpm-workspace.yaml
+  s_b4a114505f5ed6::t_0f23bb4e7e34bf 6-18,20-28,32
+.github/PULL_REQUEST_TEMPLATE.md
+  s_b4a114505f5ed6::t_43c29df80d1535 19-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "c35b6511202f13ef643e2ad5ca6bfcd12a3d5a59",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
