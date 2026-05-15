@@ -3,15 +3,33 @@ packages:
   - "apps/*"
   - "docs"
 
+# Block versions published in the last 72 hours from being installable.
+# Buys time for the community to catch typosquats and compromised
+# maintainer releases (the canonical event-stream / chalk / debug
+# supply-chain pattern). 4320 minutes = 72 hours.
+minimumReleaseAge: 4320
+
+# Refuse exotic transitive dependency sources (git+ URLs, custom
+# tarballs, local paths). Currently 0 such sources in the lockfile;
+# enabling the gate prevents a future indirect dep from sneaking one
+# in. Direct deps from non-registry sources still work — only
+# transitive ones are blocked.
+blockExoticSubdeps: true
+
 # pnpm 11 surfaces native-binary build scripts and asks each one to be
-# opted in. All four ship prebuilt binaries for the platforms we care
-# about (macos-arm64, linux-x64). None of these need to compile from
-# source — leaving them disabled matches pnpm 10's "ignored builds"
-# behaviour while making the choice explicit.
+# opted in. Decisions per package:
+#   @swc/core / esbuild / unrs-resolver: have @scoped platform-specific
+#     prebuilt packages (e.g. @img/sharp-darwin-arm64), so the main
+#     package's postinstall is just a wrapper compile that's safe to
+#     skip on our platforms (macos-arm64, linux-x64).
+#   sharp: Astro docs uses it for image processing at build time. Most
+#     of the work is in @img/sharp-* platform packages, but the
+#     postinstall does setup that some Astro versions assume — allow
+#     it to keep the docs build robust.
 allowBuilds:
   "@swc/core": false
   esbuild: false
-  sharp: false
+  sharp: true
   unrs-resolver: false
 
 # Workspace-wide version pins. pnpm 11 honours overrides defined in
