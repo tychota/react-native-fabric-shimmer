@@ -1,31 +1,32 @@
-# react-native-fabric-shimmer — monorepo
+# react-native-fabric-shimmer
 
-Dynamic shimmer skeletons for React Native — the real component **is** the skeleton.
+Dynamic skeletons for React Native Fabric. Wrap the real component, pass realistic loading data, and the library measures the native tree at runtime to paint shimmer bones in the same places.
 
-This repo contains:
+## Workspace
 
-- **`packages/react-native-fabric-shimmer/`** — the library, published to npm as
-  [`react-native-fabric-shimmer`](https://www.npmjs.com/package/react-native-fabric-shimmer).
-- **`apps/example/`** — Expo demo app (Plan 2, not yet implemented).
-- **`docs/`** — Astro Starlight documentation site (Plan 4, not yet implemented).
+- `packages/react-native-fabric-shimmer` - published npm package.
+- `apps/example` - Expo SDK 55 native demo app with Fabric enabled.
+- `docs` - Astro Starlight documentation site.
+- `superpowers` - implementation plans and design notes.
 
-## Quick start
+## Local Checks
 
 ```sh
-# Node 20 + pnpm 9 (see mise.toml / .nvmrc)
 corepack enable
 pnpm install
 
-# Library
 pnpm --filter react-native-fabric-shimmer build
 pnpm --filter react-native-fabric-shimmer test
+pnpm --filter react-native-fabric-shimmer package:check
+pnpm typecheck
 ```
 
-## Specs and plans
+The toolchain is pinned in `mise.toml`: Node 24.15.0 and pnpm 11.1.1.
 
-See `superpowers/specs/` and `superpowers/plans/` for the design doc
-and implementation plans.
+## Release Bar
+
+Before publishing, `main` should have green package build, typecheck, unit/component tests, size limit, docs build, Storybook/Chromatic visual fixtures, and native example workflows. The web Storybook previews are deterministic visual fixtures; real measurement is a Fabric runtime feature and is validated through the native example app.
 
 ## License
 
-MIT — © 2026 Tycho Tatitscheff.
+MIT - © 2026 Tycho Tatitscheff.

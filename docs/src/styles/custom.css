@@ -1,8 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap");
+
 :root {
-  --sl-font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --sl-font-system-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
+  --sl-font-system: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --sl-font-system-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --sl-color-accent-low: oklch(0.92 0.035 248);
+  --sl-color-accent: oklch(0.54 0.16 252);
+  --sl-color-accent-high: oklch(0.26 0.075 252);
+  --sl-color-text-accent: oklch(0.42 0.14 252);
+  --sl-color-bg: oklch(0.985 0.006 248);
+  --sl-color-bg-nav: oklch(0.975 0.008 248 / 0.86);
+  --sl-color-bg-sidebar: oklch(0.97 0.009 248);
+  --sl-color-hairline: oklch(0.88 0.016 248);
+  --sl-color-gray-6: oklch(0.24 0.018 248);
+  --sl-content-width: 48rem;
+  --sl-text-5xl: clamp(3rem, 7vw, 6.5rem);
+  --sl-text-4xl: clamp(2.25rem, 5vw, 4.25rem);
+  --sl-text-3xl: clamp(1.75rem, 3vw, 2.5rem);
 }
 
-.content-panel h1 {
-  letter-spacing: -0.01em;
+:root[data-theme="dark"] {
+  --sl-color-accent-low: oklch(0.25 0.08 252);
+  --sl-color-accent: oklch(0.74 0.13 252);
+  --sl-color-accent-high: oklch(0.9 0.045 252);
+  --sl-color-text-accent: oklch(0.78 0.12 252);
+  --sl-color-bg: oklch(0.18 0.018 248);
+  --sl-color-bg-nav: oklch(0.2 0.02 248 / 0.88);
+  --sl-color-bg-sidebar: oklch(0.19 0.019 248);
+  --sl-color-hairline: oklch(0.32 0.025 248);
+}
+
+body {
+  font-feature-settings:
+    "ss02" 1,
+    "liga" 1;
+}
+
+.page {
+  background:
+    linear-gradient(120deg, oklch(0.94 0.026 248 / 0.72), transparent 34rem), var(--sl-color-bg);
+}
+
+.hero {
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-block: clamp(4rem, 10vw, 8rem) clamp(3rem, 8vw, 6rem);
+}
+
+.hero h1 {
+  max-width: 10ch;
+  letter-spacing: 0;
+  line-height: 0.92;
+}
+
+.hero .tagline {
+  max-width: 42rem;
+  color: var(--sl-color-gray-3);
+  font-size: clamp(1.05rem, 1.4vw, 1.32rem);
+  line-height: 1.55;
+}
+
+.content-panel h1,
+.content-panel h2,
+.content-panel h3 {
+  letter-spacing: 0;
+}
+
+.content-panel h2 {
+  margin-top: 3rem;
+}
+
+.content-panel p,
+.content-panel li {
+  line-height: 1.72;
+}
+
+.content-panel code {
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 0.32rem;
+  font-size: 0.9em;
+}
+
+.sl-markdown-content aside {
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 0.5rem;
+  background: color-mix(in oklch, var(--sl-color-accent-low), transparent 38%);
+  padding: 1rem 1.125rem;
 }

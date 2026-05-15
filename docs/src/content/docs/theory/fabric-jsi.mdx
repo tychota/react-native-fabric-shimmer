@@ -36,8 +36,8 @@ simpler, always accurate, and never drifts from the code.
 
 ## Why new arch is a hard requirement
 
-The `ReactFabricHostComponent` type on new-arch exposes `measureLayout`
-directly. On old arch, `UIManager.measureLayout(childTag, parentTag, ...)` is
-the API — different shape, different performance profile. Rather than ship
-two code paths, we require new arch and throw a clear dev error if it's
-missing.
+Fabric host state nodes expose the shadow-node handle that
+`nativeFabricUIManager.measureLayout` needs. On old arch,
+`UIManager.measureLayout(childTag, parentTag, ...)` has a different shape and a
+different performance profile. Rather than ship two code paths, we require new
+arch and emit development warnings when the Fabric host or manager is missing.

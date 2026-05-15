@@ -1,47 +1,43 @@
 ---
 title: react-native-fabric-shimmer
-description: Dynamic shimmer skeletons for React Native — the real component is the skeleton.
+description: Dynamic skeletons measured from your real React Native Fabric tree.
 template: splash
 hero:
   title: The real component is the skeleton
-  tagline: No build-time scan. No JSON bones. No CLI. Just wrap, pass mock data, done.
+  tagline: Render the real UI with realistic loading data. Fabric measures the native tree. The shimmer follows the layout users will actually see.
   actions:
     - text: Getting started
       link: /react-native-fabric-shimmer/getting-started/
       icon: right-arrow
       variant: primary
-    - text: GitHub
-      link: https://github.com/tychota/react-native-fabric-shimmer
-      icon: external
+    - text: API reference
+      link: /react-native-fabric-shimmer/api/
+      icon: document
 ---
 
-## What it does
+## What You Get
 
-A React Native component that shows a shimmer loading state for any component
-without requiring that component to be modified. The real component renders
-with mock data while `loading=true`; the library measures its native layout
-via Fabric's synchronous JSI `measureLayout`, and paints shimmer rectangles
-at the exact positions.
+`react-native-fabric-shimmer` builds skeletons from the component you already
+own. No parallel loading layout. No code generation. No JSON list of rectangles
+that goes stale after the next design pass.
 
-- Works on **React Native ≥ 0.76** with the New Architecture (Fabric).
-- Requires **Reanimated ≥ 3.17** and **React ≥ 19**.
-- **React Compiler safe** — no manual `useMemo` or `React.memo` required.
-- **Accessible by default** — `progressbar` role, content hidden from VoiceOver while loading, reduce-motion respected.
+- **Measured at runtime** through React Native Fabric.
+- **Shimmer, pulse, or static bones** with reduce-motion-aware Reanimated worklets.
+- **A small IR** for hiding, merging, and replacing measured bones.
+- **Native-first validation** through the example app; web Storybook is only a deterministic visual preview.
 
-## Quick look
+## First Look
 
 ```tsx
 import { Skeleton } from "react-native-fabric-shimmer";
 
-<Skeleton loading={!user} baseColor="#eee" highlightColor="#fff">
-  <UserCard user={user ?? MOCK_USER} />
+<Skeleton loading={user === undefined} baseColor="#e4e4e7" highlightColor="#f4f4f5">
+  <UserCard user={user ?? PLACEHOLDER_USER} />
 </Skeleton>;
 ```
 
 <aside>
-  Browsing the source? Try the{" "}
-  <a href="https://github.com/tychota/react-native-fabric-shimmer/tree/main/apps/example">
-    example app
-  </a>{" "}
-  — 12 demos covering every library feature.
+  New Architecture is not optional. Start with the{" "}
+  <a href="/react-native-fabric-shimmer/platform-contract/">platform contract</a> if your app also
+  targets web, Storybook, Expo Go, or an old native renderer.
 </aside>

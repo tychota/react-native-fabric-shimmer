@@ -7,8 +7,8 @@ description: Install react-native-fabric-shimmer, wrap one component, see a shim
 
 - React Native **0.76+** with the New Architecture enabled
 - React **19+**
-- `react-native-reanimated` **3.17+**
-- `expo-linear-gradient` **15+** (or `react-native-linear-gradient` **3+**)
+- `react-native-reanimated` **4+**
+- `expo-linear-gradient` **15+**
 
 If you're starting fresh with Expo, these are the defaults in SDK 55+.
 
@@ -24,7 +24,7 @@ npm and Yarn work equivalently.
 
 ## Enable New Architecture
 
-The library throws a dev-only error on old architecture. For Expo:
+The library warns in development and skips measurement on old architecture. For Expo:
 
 ```ts
 // app.config.ts
@@ -78,9 +78,16 @@ Wrap, pass mock data for the loading case, done. The library renders your
 `<UserCard>`, measures it, and overlays shimmer rectangles over every visible
 content leaf.
 
-## What's next
+## Web and Storybook
+
+Runtime measurement is native-only. React Native Web can render fixture previews,
+but it does not provide Fabric shadow nodes or `nativeFabricUIManager`. Read the
+[platform contract](/react-native-fabric-shimmer/platform-contract/) before
+building docs, Storybook, or visual tests around the library.
+
+## What's Next
 
 - [Usage patterns](/react-native-fabric-shimmer/usage/) for stale-while-revalidate, pull-to-refresh, and error states
 - [API reference](/react-native-fabric-shimmer/api/) for every prop and type
-- [Theory](/react-native-fabric-shimmer/theory/fabric-jsi/) to understand how the library works under the hood
+- [Platform contract](/react-native-fabric-shimmer/platform-contract/) for native/web boundaries
 - [Extension points](/react-native-fabric-shimmer/extension/colors/) for custom colors, animations, and bone overrides

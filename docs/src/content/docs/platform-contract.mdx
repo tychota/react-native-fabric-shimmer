@@ -1,0 +1,45 @@
+---
+title: Platform contract
+description: What the library promises on native, web, Storybook, and CI.
+---
+
+## Native Runtime
+
+`react-native-fabric-shimmer` is a React Native Fabric library. It expects host
+fibers with Fabric state nodes and `global.nativeFabricUIManager.measureLayout`.
+That is what lets it measure the real layout without a second skeleton layout.
+
+Supported runtime:
+
+- React Native 0.76+ with New Architecture enabled
+- React 19+
+- Reanimated 4+
+- `expo-linear-gradient` 15+
+
+Old architecture, Expo Go builds without the native runtime you need, and
+non-Fabric renderers cannot produce measured bones.
+
+## Web Previews
+
+React Native Web can render React Native-style components in Storybook, but it
+does not provide Fabric shadow nodes. The library cannot measure real web DOM
+layout through its native Fabric path.
+
+The repository's Storybook therefore uses deterministic `BoneRect` fixtures for
+Chromatic. Those stories are visual contract tests for `<Bone>` styling, not
+runtime tests for measurement.
+
+## React Strict DOM
+
+React Strict DOM is promising, but it is not a Fabric measurement replacement
+for this library. It is a web-API-shaped authoring model that can target native;
+it does not make `nativeFabricUIManager.measureLayout` available in a browser
+Storybook preview.
+
+## CI Responsibilities
+
+- Unit and component tests cover classifier, IR helpers, measurement helpers,
+  visibility timing, and rendered bone elements.
+- Storybook and Chromatic cover deterministic visual fixtures.
+- The Expo example app and Maestro cover native runtime behavior.
+- Package checks verify the npm tarball points to files that actually exist.

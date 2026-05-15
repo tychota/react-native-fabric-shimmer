@@ -17,6 +17,7 @@ type SkeletonProps = {
   animation?: "shimmer" | "pulse" | "none"; // default 'shimmer'
   transition?: boolean | number; // ms; default 300, false disables
   minShowDuration?: number; // ms; default 500
+  delayShowDuration?: number; // ms; default 100
 
   // Optional — extension hooks
   renderBone?: RenderBoneFn;
@@ -24,7 +25,7 @@ type SkeletonProps = {
   refineBones?: RefineBonesFn;
 
   // Optional — observability
-  onMeasured?: (bones: ReadonlyArray<BoneRect>) => void;
+  onMeasured?: (bones: ReadonlyArray<BoneRect>, tree: BoneNode) => void;
 
   // Optional — layout / a11y
   style?: StyleProp<ViewStyle>;
@@ -44,6 +45,7 @@ type SkeletonProps = {
 - **`animation`** — `'shimmer'` (default) is a translating gradient sweep; `'pulse'` is an opacity oscillation; `'none'` renders static bones (useful for test snapshots).
 - **`transition`** — milliseconds for the fade-out on `loading=false`. `true` uses 300ms; `false` disables the fade entirely.
 - **`minShowDuration`** — milliseconds. Once the skeleton appears, it stays for at least this long to prevent flicker.
+- **`delayShowDuration`** — milliseconds. Loading must stay true for this long before the skeleton appears.
 
 ### Extension hooks
 
@@ -53,7 +55,7 @@ type SkeletonProps = {
 
 ### Observability
 
-- **`onMeasured`** — called with the flattened `BoneRect[]` each time measurement completes. Useful for debug overlays, analytics, or memoization.
+- **`onMeasured`** — called with the flattened `BoneRect[]` and refined `BoneNode` tree each time measurement completes. Useful for debug overlays, `dumpTree(tree)`, analytics, or memoization.
 
 ## `<Bone>`
 
@@ -174,6 +176,7 @@ type FiberClassification = "leaf" | "container" | "transparent" | "skip";
 type RenderBoneFn = (rect: BoneRect, ctx: BoneContext) => ReactNode;
 type ClassifyFn = (fiber: FiberNode) => FiberClassification;
 type RefineBonesFn = (tree: BoneNode) => BoneNode;
+type OnMeasuredFn = (bones: ReadonlyArray<BoneRect>, tree: BoneNode) => void;
 ```
 
 ## IR helpers

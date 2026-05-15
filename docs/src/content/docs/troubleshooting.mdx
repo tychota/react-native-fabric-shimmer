@@ -3,89 +3,77 @@ title: Troubleshooting
 description: Dev warnings, common gotchas, and how to resolve them.
 ---
 
-## Warnings
+## No Bones Appear
 
-The library logs at most five distinct warnings in dev, each at most once per
-Skeleton mount.
+Start with the platform contract. The library needs Fabric host nodes and
+`global.nativeFabricUIManager.measureLayout`; web previews and old architecture
+native builds cannot provide them.
 
-### `Fabric required. Enable the New Architecture.`
+In development, warnings use the `[fabric-shimmer]` prefix.
 
-You're on the old architecture (Paper). The library doesn't support it.
+### `containerRef.current is null`
 
-Fix: enable new arch.
+The outer measurement container is not mounted yet. This usually means the
+component unmounted during the loading transition or the layout event fired
+before the ref attached.
 
-- **Expo:** set `newArchEnabled: true` in `app.config.ts` and rebuild.
-- **Bare RN:** set `newArchEnabled=true` in `android/gradle.properties` and
-  run `RCT_NEW_ARCH_ENABLED=1 pod install --repo-update` in `ios/`.
+Fix: keep the `Skeleton` mounted while loading and avoid conditionally removing
+the wrapper around it.
 
-### `Container ref has no fiber instance. Is this inside a <Modal> or <Portal>?`
+### `containerRef has no fiber instance`
 
-The `ref.current` doesn't expose `__internalInstanceHandle`. Common causes:
+The ref does not expose React Native's internal fiber handle. The usual cause is
+view flattening or a non-host wrapper.
 
-- The Skeleton is rendered inside a `<Modal>` or `<Portal>` whose children
-  live in a detached tree.
-- The container is optimized away by Fabric view flattening.
+Fix: keep `collapsable={false}` on the native wrapper. The library already does
+this for its own outer and content views; add it to surrounding portal/modal
+boundaries if needed.
 
-Fix: wrap the Skeleton (or the Modal) with `<View collapsable={false}>` or
-rerender outside the portal.
+### `Fabric state node not found on container`
 
-### `No bones found after walk. Your subtree may contain only transparent views.`
+The app is not running on the Fabric renderer for that subtree.
 
-The measurement completed but no leaves were classified as bone candidates.
-The subtree may be only plain `<View>` wrappers without text, images, or
-distinctive surfaces.
+Fix: enable New Architecture, rebuild native binaries, and verify the screen is
+not inside a renderer boundary that falls back to Paper.
 
-Fix: add a leaf type (`<Text>`, `<Image>`) to the children, or provide a
-`classify` function that marks your custom component as a leaf.
+### `global.nativeFabricUIManager is not available`
 
-### `{hookName} threw: {error}. Falling back to default.`
+The host looked Fabric-shaped, but the global Fabric manager is missing.
 
-Your `classify` / `refineBones` / `renderBone` threw. The library falls back
-to the default.
+Fix: rebuild with New Architecture enabled. In Expo, set `newArchEnabled: true`
+and use a native build or dev client, not an environment that lacks the native
+runtime.
 
-Fix: handle the error in your hook. Check types and nullish guards.
+### `No measurable bones found`
 
-### `Measurement pipeline exceeded {N}ms for {M} nodes.`
+The component rendered, but the classifier found no text, image, text input, or
+distinctive surface.
 
-The pipeline took longer than expected, usually because the subtree is very
-large (50+ leaves). Skeleton rendering still works, but consider narrowing
-the scope with `classify`:
+Fix: pass realistic placeholder data so content exists, or provide `classify`
+for custom host components that should become bones.
+
+## Debugging Shape
+
+Use `onMeasured` with `dumpTree`:
 
 ```tsx
-<Skeleton classify={(fiber) => fiber.type === 'DebugBorder' ? 'skip' : defaultClassify(fiber)}>
+<Skeleton
+  loading
+  baseColor="#e4e4e7"
+  highlightColor="#f4f4f5"
+  onMeasured={(_bones, tree) => console.log(dumpTree(tree))}
+>
+  <UserCard user={PLACEHOLDER_USER} />
+</Skeleton>
 ```
 
-## Common issues
+If the tree is correct but too noisy, use `refineBones` with `hide`, `merge`,
+or a custom transform.
 
-### Bones don't appear even when `loading=true`
+## Shimmer Looks Choppy
 
-Check:
-
-1. Is `loading=true` actually true? Log it.
-2. Did `onLayout` fire? Add a temporary `onMeasured` prop to verify.
-3. Is the container ref attached? (see "Container ref has no fiber instance".)
-4. Are the children rendering with valid data? A subtree with all transparent
-   `<View>` wrappers has no measurable leaves.
-
-### Shimmer looks choppy
-
-Usually a Reanimated or new-arch config issue:
-
-- Ensure `react-native-worklets/plugin` is **last** in `babel.config.js`.
-- Ensure new arch is enabled.
-- Profile with the Reanimated debugger to confirm worklets run on the UI thread.
-
-### Visual differs between iOS and Android
-
-Fabric's view flattening and measurement rounding may differ slightly. The
-library measures whatever Fabric reports; minor pixel differences are
-platform-native. If they're severe, open an issue with a repro.
-
-### React Compiler complains about my hook
-
-Ensure:
-
-- Your component doesn't mutate props or state during render.
-- You're not reading a mutable ref during render (use in effects or handlers).
-- You're not calling React hooks inside `classify` / `refineBones` /
-  `renderBone` — those are pure functions called outside render.
+- Ensure `react-native-worklets/plugin` is last in `babel.config.js`.
+- Confirm Reanimated 4 is installed once in the app.
+- Use `animation="none"` for deterministic screenshots.
+- Use the native profiler for runtime animation issues; Storybook fixture
+  snapshots do not exercise native worklets.

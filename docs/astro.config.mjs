@@ -19,6 +19,7 @@ export default defineConfig({
         { label: "Getting started", link: "/getting-started/" },
         { label: "Usage", link: "/usage/" },
         { label: "API reference", link: "/api/" },
+        { label: "Platform contract", link: "/platform-contract/" },
         {
           label: "Theory",
           items: [
