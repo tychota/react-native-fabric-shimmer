@@ -1,0 +1,34 @@
+.github/workflows/example.yml
+  s_8a654df4bde4f9::t_17bda957fa25d4 48,51,74
+.github/workflows/ci.yml
+  s_8a654df4bde4f9::t_f30661285cae66 28
+package.json
+  s_8a654df4bde4f9::t_7693d97fd9edae 8-9
+.oxlintrc.json
+  s_8a654df4bde4f9::t_8fdaa2bc0b1735 15
+  s_8a654df4bde4f9::t_87bd8cc45b6be3 13-14,16-19
+.github/workflows/release.yml
+  s_8a654df4bde4f9::t_b08b4a76d54376 46
+packages/react-native-fabric-shimmer/package.json
+  s_8a654df4bde4f9::t_8b8874b407a481 36-38
+  s_8a654df4bde4f9::t_0edc2e2bcd63e0 43
+  s_8a654df4bde4f9::t_c4d73196d75f3a 53
+scripts/check-package.mjs
+  s_8a654df4bde4f9::t_c74564bc4bb785 1-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "06a8a8cfb834c0900fe0b8696327ad08f839a448",
+  "prompts": {},
+  "sessions": {
+    "s_8a654df4bde4f9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e2bdc-716d-72c1-9a5e-53a8ecb871aa",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
