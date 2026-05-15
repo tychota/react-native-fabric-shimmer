@@ -1,0 +1,22 @@
+.github/workflows/release.yml
+  s_8a654df4bde4f9::t_3421d0033e1f38 40-42
+packages/react-native-fabric-shimmer/package.json
+  s_8a654df4bde4f9::t_989cd34e15f69b 41-42,45
+  s_8a654df4bde4f9::t_dce12d10ce94df 43-44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "72ad134325218c5d89097907bb3d7918b3f73295",
+  "prompts": {},
+  "sessions": {
+    "s_8a654df4bde4f9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e2bdc-716d-72c1-9a5e-53a8ecb871aa",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
