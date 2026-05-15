@@ -1,0 +1,37 @@
+docs/src/content/docs/recipes/custom-bone-blur.mdx
+  s_b4a114505f5ed6::t_7ba535227f02ed 30-39
+apps/example/app/custom-bone.tsx
+  s_b4a114505f5ed6::t_ac80a545fe5732 13-23
+docs/src/content/docs/extension/render-bone.mdx
+  s_b4a114505f5ed6::t_f0822c9298a67d 41-50
+packages/react-native-fabric-shimmer/src/types.ts
+  s_b4a114505f5ed6::t_35ff0bb398ae50 23-25,35-50,53-56
+packages/react-native-fabric-shimmer/__tests__/component/Bone.test.tsx
+  s_b4a114505f5ed6::t_a76c72fd98c733 8,10,24-27,29-30,33-34,83,88,97,103-108,114,119-121,126,131,136,142
+packages/react-native-fabric-shimmer/stories/Skeleton.stories.tsx
+  s_b4a114505f5ed6::t_8bff4bc0d883ee 116-123
+docs/src/content/docs/api.mdx
+  s_b4a114505f5ed6::t_cd25327ec97389 63-66,72-93
+packages/react-native-fabric-shimmer/src/Skeleton.tsx
+  s_b4a114505f5ed6::t_961aa1a92114b9 131
+  s_b4a114505f5ed6::t_ba6b7642812411 112-128,130,132-139
+packages/react-native-fabric-shimmer/src/Bone.tsx
+  s_b4a114505f5ed6::t_6220cc4b2bd154 9-15,21
+  s_b4a114505f5ed6::t_3a2989906395b5 16-20,28-29,31-32,44-45,64,67,73,75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "a4a19c2d091620252bbfdf55a288a0f7a514fe71",
+  "prompts": {},
+  "sessions": {
+    "s_b4a114505f5ed6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99316da6-18a0-46c0-8dc2-2818f385dab1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
