@@ -1,6 +1,6 @@
 {
   "name": "react-native-fabric-shimmer",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Dynamic shimmer skeletons for React Native — wraps the real component, measures at runtime via Fabric JSI, paints shimmer at exact positions.",
   "keywords": [
     "fabric",
