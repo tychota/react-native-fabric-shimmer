@@ -1,0 +1,19 @@
+.github/workflows/chromatic.yml
+  s_8a654df4bde4f9::t_3cb574256361cc 11-12,14-18,20,25-27,29,33-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "cfe277ebda8109a1be798b3ad5c63c8f13bb4b0f",
+  "prompts": {},
+  "sessions": {
+    "s_8a654df4bde4f9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e2bdc-716d-72c1-9a5e-53a8ecb871aa",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
