@@ -1,0 +1,19 @@
+.github/dependabot.yml
+  s_8a654df4bde4f9::t_2c0f4f32bfb9f7 6-11,43-46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "8e2c60fda18305e3ecf730485e15f6a866db17cb",
+  "prompts": {},
+  "sessions": {
+    "s_8a654df4bde4f9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e2bdc-716d-72c1-9a5e-53a8ecb871aa",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Tycho Tatitscheff <tycho.tatitscheff@gmail.com>"
+    }
+  }
+}
