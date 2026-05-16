@@ -8,19 +8,31 @@ on:
 jobs:
   chromatic:
     runs-on: ubuntu-latest
+    env:
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
     steps:
+      - name: Skip when Chromatic token is unavailable
+        if: ${{ env.CHROMATIC_PROJECT_TOKEN == '' }}
+        run: |
+          echo "CHROMATIC_PROJECT_TOKEN is not configured for this workflow context."
+          echo "Skipping visual publishing without failing CI."
       - uses: actions/checkout@v6
+        if: ${{ env.CHROMATIC_PROJECT_TOKEN != '' }}
         with:
           # Chromatic needs full history for baseline detection.
           fetch-depth: 0
       - uses: jdx/mise-action@v4
-      - run: corepack enable
+        if: ${{ env.CHROMATIC_PROJECT_TOKEN != '' }}
+      - if: ${{ env.CHROMATIC_PROJECT_TOKEN != '' }}
+        run: corepack enable
       - uses: actions/cache@v5
+        if: ${{ env.CHROMATIC_PROJECT_TOKEN != '' }}
         with:
           path: ~/.local/share/pnpm/store
           key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter react-native-fabric-shimmer storybook:build
-      - run: pnpm --filter react-native-fabric-shimmer chromatic --storybook-build-dir storybook-static
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - if: ${{ env.CHROMATIC_PROJECT_TOKEN != '' }}
+        run: pnpm install --frozen-lockfile
+      - if: ${{ env.CHROMATIC_PROJECT_TOKEN != '' }}
+        run: pnpm --filter react-native-fabric-shimmer storybook:build
+      - if: ${{ env.CHROMATIC_PROJECT_TOKEN != '' }}
+        run: pnpm --filter react-native-fabric-shimmer chromatic --storybook-build-dir storybook-static
